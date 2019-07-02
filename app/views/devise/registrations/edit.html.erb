@@ -9,6 +9,18 @@
   </div>
 
   <div class="field">
+    <%= f.label :profile_pic%><br />
+    <%= image_tag user_profile_pic(resource,100), class: 'img-circle' %><br />
+    <%= f.file_field :profile_pic, autocomplete: "profile_pic"  %><br />
+
+    <% if @user.profile_pic.attached? %>
+      <%= f.label :remove_profile_pic %>
+      <%= f.check_box :remove_profile_pic %>
+    <% end %>
+  </div>
+
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autocomplete: "email" %>
   </div>
