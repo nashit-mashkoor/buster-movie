@@ -12,10 +12,9 @@
 //
 //= require rails-ujs
 //= require activestorage
-
 //= require jquery
 //= require bootstrap-sprockets
-
 //= require jquery.turbolinks
 //= require bootstrap/dropdown
+//= require tinymce
 //= require_tree .

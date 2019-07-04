@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= image_tag @movie.thumb_nail(20) %>
+  <%= @movie.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= sanitize @movie.description.strip %>
+</p>
+
+<p>
+  <strong>Length:</strong>
+  <%= @movie.length %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @movie.rating %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @movie.year %>
+</p>
+
+<p>
+  <strong>Trailer:</strong>
+  <%= render partial: 'trailer' , locals: {movie: @movie} %>
+</p>
+
+<p>
+  <strong>Posters:</strong><br />
+  <% 0 .. @movie.posters.count do |poster| %>
+    <%= render partial: 'poster', locals: {movie: @movie, poster: poster} %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>

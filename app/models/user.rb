@@ -9,7 +9,7 @@ class User < ApplicationRecord
   attr_accessor :remove_profile_pic
 
   after_save :purge_profile_pic, if: :remove_profile_pic
-  private def purge_profile_pic
+  def purge_profile_pic
     profile_pic.purge_later
   end
 end

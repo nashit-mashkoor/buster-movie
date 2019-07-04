@@ -1,0 +1,65 @@
+
+<%= form_with(model: movie, local: true) do |form| %>
+  <% if movie.errors.any? %>
+    <div id="error_explanation" xmlns: xmlns: xmlns:>
+      <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+      <% movie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <div style="width: 800px">
+      <%= form.text_area :description, class: 'tinymce', rows: 10,cols:20 %>
+    </div>
+    <%= tinymce %>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :length %>
+    <%= form.text_field :length %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.text_field :rating %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year %>
+    <%= form.date_select :year %>
+  </div>
+  <div class="field">
+    <%= form.label :thumbnail %>
+    <%= form.file_field :thumbnail %>
+  </div>
+  <div class="field">
+    <%= render partial: 'trailer',locals: {movie: @movie} %>
+    <%= form.label :trailer %>
+    <%= form.file_field :trailer %>
+  </div>
+  <div class="field">
+    <% 0 .. @movie.posters.count do |poster| %>
+      <%= render partial: 'poster', locals: {movie: @movie, poster: poster} %>
+    <% end %>
+    <br />
+    <%= form.label :posters %>
+    <%= form.file_field :posters , multiple: true%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

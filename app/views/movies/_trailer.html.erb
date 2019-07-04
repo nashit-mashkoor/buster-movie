@@ -1,0 +1,9 @@
+<link href="https://vjs.zencdn.net/7.5.5/video-js.css" rel="stylesheet">
+<% if movie.trailer.attached? %>
+  <div style= "width: 400px; height: 400px">
+    <%= video_tag(url_for(movie.trailer),style: "width: 100%; height: auto",controls: "") %>
+    <%= link_to 'Remove', delete_trailer_movie_path, method: :delete , data: { confirm: 'Are you sure?' }  %>
+  </div>
+<%else %>
+  <h3>Trailer not found</h3>
+<% end %>
