@@ -12,9 +12,9 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="field">
@@ -50,8 +50,12 @@
     <%= form.file_field :trailer %>
   </div>
   <div class="field">
-    <% 0 .. @movie.posters.count do |poster| %>
-      <%= render partial: 'poster', locals: {movie: @movie, poster: poster} %>
+    <% if movie.posters.attached? %>
+      <% @movie.posters.each do |poster| %>
+        <%= render partial: 'poster', locals: {movie: @movie, poster: poster} %>
+     <% end %>
+    <%else %>
+      <h3>Poster not found</h3>
     <% end %>
     <br />
     <%= form.label :posters %>
