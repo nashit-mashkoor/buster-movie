@@ -1,0 +1,31 @@
+<%= form_with(model: actor, local: true) do |form| %>
+  <% if actor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(actor.errors.count, "error") %> prohibited this actor from being saved:</h2>
+
+      <ul>
+      <% actor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if actor.actor_pic.attached? %>
+      <%= image_tag actor.resized_actor_pic(200) %>
+    <%else %>
+      <h1> No picture Found </h1>
+    <% end %>
+    <%= form.label :actor_pic  %>
+    <%= form.file_field :actor_pic %>
+  </div>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

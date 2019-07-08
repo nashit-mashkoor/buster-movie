@@ -53,13 +53,23 @@
     <% if movie.posters.attached? %>
       <% @movie.posters.each do |poster| %>
         <%= render partial: 'poster', locals: {movie: @movie, poster: poster} %>
-     <% end %>
+      <% end %>
     <%else %>
       <h3>Poster not found</h3>
     <% end %>
     <br />
     <%= form.label :posters %>
     <%= form.file_field :posters , multiple: true%>
+  </div>
+
+  <div class="field">
+    <% @movie.actors.each do |actor| !%>
+      <%= render partial: 'actor_movie', locals: { movie: @movie, actor: actor} %>
+    <% end %><br />
+    <%= form.label "Actors" %>
+    <%#= collection_select(:actors, :id, get_actors_for_movie(@movie), :id, :name, class: "form-control",multiple: true) %>
+    <%= form.select(:actor_ids, get_actors_for_movie(@movie), { prompt: 'Please select', selected: @movie.actors }, { class: 'form-control', multiple: true }) %>
+
   </div>
 
   <div class="actions">

@@ -8,8 +8,5 @@ module ApplicationHelper
       gravatar_id = 1
       return "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
     end
-
   end
-
-
 end

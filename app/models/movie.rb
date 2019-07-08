@@ -7,6 +7,7 @@ class Movie < ApplicationRecord
   has_one_attached :thumbnail
   has_one_attached :trailer
   has_many_attached :posters
+  has_and_belongs_to_many :actors
 
   after_validation :check_movie_attachments, only: [:create]
   before_destroy   :purge_posters
@@ -27,7 +28,7 @@ class Movie < ApplicationRecord
   #Resize a single poster
   def movie_poster(poster, size = 40)
     if posters.attached?
-      poster.variant(resize: "#{size}x#{size}!").processed
+      poster.variant(resize: "#{size}x#{size}!")
     end
   end
 
@@ -49,7 +50,6 @@ class Movie < ApplicationRecord
   end
   #purge all poster
   def purge_posters
-    byebug
     if posters.attached?
       posters.each do |poster|
         poster.purge
