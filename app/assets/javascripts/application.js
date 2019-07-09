@@ -14,6 +14,5 @@
 //= require activestorage
 //= require jquery
 //= require bootstrap-sprockets
-//= require bootstrap/dropdown
 //= require tinymce
 //= require_tree .

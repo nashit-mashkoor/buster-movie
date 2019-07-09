@@ -13,7 +13,7 @@
 
   <div class="field">
     <% if actor.actor_pic.attached? %>
-      <%= image_tag actor.resized_actor_pic(200) %>
+      <%= image_tag actor.resized_actor_pic(200,200) %>
     <%else %>
       <h1> No picture Found </h1>
     <% end %>

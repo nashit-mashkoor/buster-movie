@@ -14,10 +14,10 @@ class Movie < ApplicationRecord
 
 
   #Resize thumb nail
-  def thumb_nail(size = 40)
+  def thumb_nail(wsize = 40, hsize = 40)
 
     if self.thumbnail.attached?
-      self.thumbnail.variant(resize: "#{size}x#{size}!")
+      self.thumbnail.variant(resize: "#{wsize}x#{hsize}!")
     else
       gravatar_id = 1
       return "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
@@ -26,9 +26,9 @@ class Movie < ApplicationRecord
   end
 
   #Resize a single poster
-  def movie_poster(poster, size = 40)
+  def movie_poster(poster, wsize = 40, hsize = 40)
     if posters.attached?
-      poster.variant(resize: "#{size}x#{size}!")
+      poster.variant(resize: "#{wsize}x#{hsize}!")
     end
   end
 

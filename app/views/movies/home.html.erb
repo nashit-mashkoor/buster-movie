@@ -1,0 +1,14 @@
+<div class = "row">
+  <% @movies.each do |movie| %>
+    <div class="col-md-3", align="center" >
+      <a href="<%= movie_path(movie) %>">
+        <%= image_tag movie.thumb_nail(400, 600) , class: 'movie-view'%><br/>
+      </a>
+      <div class = "row">
+        <div class = "col-md-12" align="center">
+          <h2><%= movie.title %></h2>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

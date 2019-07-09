@@ -17,7 +17,7 @@ class Actor < ApplicationRecord
     end
   end
   #resize picture
-  def resized_actor_pic(size = 40)
-    actor_pic.variant(resize: "#{size}x#{size}!") if actor_pic.attached?
+  def resized_actor_pic(wsize = 40, hsize = 40)
+    actor_pic.variant(resize: "#{wsize}x#{hsize}!") if actor_pic.attached?
   end
 end

@@ -10,7 +10,7 @@
 
   <div class="field">
     <%= f.label :profile_pic%><br />
-    <%= image_tag user_profile_pic(resource,100), class: 'img-circle' %><br />
+    <%= image_tag user_profile_pic(resource,100,100), class: 'img-circle' %><br />
     <%= f.file_field :profile_pic, autocomplete: "profile_pic"  %><br />
 
     <% if @user.profile_pic.attached? %>
