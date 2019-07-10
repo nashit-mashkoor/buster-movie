@@ -10,6 +10,8 @@ class User < ApplicationRecord
   after_save :purge_profile_pic, if: :remove_profile_picture?
   after_validation :check_user_attachments
 
+  has_many :reviews
+
   #Delete profile picture
   def purge_profile_pic
     profile_pic.purge_later

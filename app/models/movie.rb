@@ -12,6 +12,8 @@ class Movie < ApplicationRecord
   after_validation :check_movie_attachments, only: [:create]
   before_destroy   :purge_posters
 
+  has_many :reviews
+  
 
   #Resize thumb nail
   def thumb_nail(wsize = 40, hsize = 40)

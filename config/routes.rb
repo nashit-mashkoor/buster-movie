@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :actors
   resources :movies do
+    resources :reviews
     member do
       delete 'delete_poster/:poster_id', to: 'movies#delete_poster', as: 'delete_poster'
       delete 'delete_trailer', to: 'movies#delete_trailer', as: 'delete_trailer'
