@@ -94,6 +94,10 @@ class MoviesController < ApplicationController
     redirect_to movie_path(@movie), notice: 'Actor was successfully removed'
   end
 
+  #GET /movies/land also the root page
+  def land
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_movie

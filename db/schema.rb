@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_132358) do
+ActiveRecord::Schema.define(version: 2019_07_11_082531) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_132358) do
     t.string "profile_pic_content_type"
     t.bigint "profile_pic_file_size"
     t.datetime "profile_pic_updated_at"
+    t.boolean "super_user", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

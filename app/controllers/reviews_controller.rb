@@ -1,8 +1,10 @@
 class ReviewsController < ApplicationController
-  before_action :find_movie
-  before_action :find_review, only: [:edit, :update, :destroy]
+  before_action :find_movie, except: [:index]
+  before_action :find_review, only:  [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit]
 
+  def index
+  end
   def new
     @review = Review.new
   end

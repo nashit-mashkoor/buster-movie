@@ -1,34 +1,38 @@
 <!--login form popup-->
-<div class="login-wrapper" id="login-content">
+<div class="login-wrapper" id="login-content" >
     <div class="login-content">
         <a href="#" class="close">x</a>
         <h3>Login</h3>
-        <form method="post" action="http://haintheme.com/demo/html/bustter/login.php">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="row">
-             <label for="username">
-                    Username:
-                    <input type="text" name="username" id="username" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
-                </label>
+             <%= f.label :email do %>
+                    Email:
+                    
+                     <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "username",  required: 'required', placeholder: 'abc@gmail.com' %>
+                <% end %>
           </div>
            
             <div class="row">
               <label for="password">
                     Password:
-                    <input type="password" name="password" id="password" placeholder="******" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                   
+                    <%= f.password_field :password, autocomplete: "current-password", id: "password", placeholder: "******",  required: "required" %>
                 </label>
             </div>
             <div class="row">
               <div class="remember">
-          <div>
-            <input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
-          </div>
-                <a href="#">Forget password ?</a>
+                  
+              <% if devise_mapping.rememberable? %>
+                <div>
+                   <%=f.check_box :remember_me%><span>Remember me</span>
+                 </div>                
+              <% end %>
               </div>
             </div>
            <div class="row">
-             <button type="submit">Login</button>
+            <%= f.submit "Log in" %>
            </div>
-        </form>
+        <% end %>
         <div class="row">
           <p>Or via social</p>
             <div class="social-btn-2">
@@ -39,3 +43,7 @@
     </div>
 </div>
 <!--end of login form popup-->
+
+
+
+

@@ -1879,7 +1879,7 @@
 }
 
 #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-	background-image: url(../images/fancybox_sprite.png);
+  background-image:  image-url('fancybox_sprite.png');
 }
 
 #fancybox-loading {
@@ -1897,7 +1897,7 @@
 #fancybox-loading div {
 	width: 44px;
 	height: 44px;
-	background: url(../images/fancybox_loading.gif) center center no-repeat;
+	background: image-url('fancybox_loading.gif') center center no-repeat;
 }
 
 .fancybox-close {
@@ -1917,7 +1917,7 @@
 	height: 100%;
 	cursor: pointer;
 	text-decoration: none;
-	background: transparent url(../images/blank.html); /* helps IE */
+	background: transparent image-url('blank.html'); /* helps IE */
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	z-index: 8040;
 }
@@ -1986,7 +1986,7 @@
 	overflow: hidden;
 	display: none;
 	z-index: 8010;
-	background: url(../images/fancybox_overlay.png);
+	background: image-url('fancybox_overlay.png');
 }
 
 .fancybox-overlay-fixed {
@@ -2065,12 +2065,12 @@
 	   only screen and (min-device-pixel-ratio: 1.5){
 
 	#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-		background-image: url(../images/fancybox_sprite%402x.png);
+		background-image: image-url('fancybox_sprite%402x.png');
 		background-size: 44px 152px; /*The size of the normal image, half the size of the hi-res image*/
 	}
 
 	#fancybox-loading div {
-		background-image: url(../images/fancybox_loading%402x.gif);
+		background-image: image-url('fancybox_loading%402x.gif');
 		background-size: 24px 24px; /*The size of the normal image, half the size of the hi-res image*/
 	}
 }
@@ -2294,7 +2294,7 @@
   background: #666;
   background: rgba(0,0,0,0.6); 
 }
-.nivo-lightbox-theme-default .nivo-lightbox-content.nivo-lightbox-loading { background: url(../images/nivo/loading.gif) no-repeat 50% 50%; }
+.nivo-lightbox-theme-default .nivo-lightbox-content.nivo-lightbox-loading { background: image-url('nivo/loading.gif') no-repeat 50% 50%; }
 
 .nivo-lightbox-theme-default .nivo-lightbox-nav {
   top: 10%;
@@ -2310,17 +2310,17 @@
   background-color: rgba(0,0,0,0.5);
 }
 .nivo-lightbox-theme-default .nivo-lightbox-prev { 
-  background-image: url(../images/nivo/prev.png); 
+  background-image: image-url('nivo/prev.png'); 
   border-radius: 0 3px 3px 0;
 }
 .nivo-lightbox-theme-default .nivo-lightbox-next { 
-  background-image: url(../images/nivo/next.png); 
+  background-image: image-url('nivo/next.png'); 
   border-radius: 3px 0 0 3px;
 }
 
 .nivo-lightbox-theme-default .nivo-lightbox-close {
   display: block;
-  background: url(../images/nivo/close.png) no-repeat 5px 5px;
+  background:image- url('nivo/close.png') no-repeat 5px 5px;
   width: 16px;
   height: 16px;
   text-indent: -9999px;
@@ -2362,19 +2362,19 @@
        (min-resolution: 1.3dppx) {
 
   .nivo-lightbox-theme-default .nivo-lightbox-content.nivo-lightbox-loading { 
-    background-image: url(../images/nivo/loading%402x.gif); 
+    background-image: image-url('nivo/loading%402x.gif'); 
     background-size: 32px 32px;
   }
   .nivo-lightbox-theme-default .nivo-lightbox-prev { 
-    background-image: url(../images/nivo/prev%402x.png); 
+    background-image: image-url('nivo/prev%402x.png'); 
     background-size: 48px 48px;
   }
   .nivo-lightbox-theme-default .nivo-lightbox-next { 
-    background-image: url(../images/nivo/next%402x.png); 
+    background-image: image-url('nivo/next%402x.png'); 
     background-size: 48px 48px;
   }
   .nivo-lightbox-theme-default .nivo-lightbox-close { 
-    background-image: url(../images/nivo/close%402x.png); 
+    background-image: image-url('nivo/close%402x.png'); 
     background-size: 16px 16px;
   }
   

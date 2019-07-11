@@ -15,3 +15,10 @@
 //= require jquery
 //= require tinymce
 //= require_tree .
+//= require_self
+$(document).ready(function(){
+    $(".alert-alert").delay(1000).slideUp(300);
+});
+$(document).ready(function(){
+    $(".alert-notice").delay(1000).slideUp(300);
+});
