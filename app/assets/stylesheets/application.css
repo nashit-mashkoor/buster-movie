@@ -136,8 +136,17 @@
     background-color: #c4610a;
 }
 
+.my-x.btn
+{
+    overflow:hidden;
+    color: #ffffff;
+    background-color: transparent;
+    
+}
+.my-x-btn:hover{
+    ]color: #c4610a;
 
-
+}
 
 
 

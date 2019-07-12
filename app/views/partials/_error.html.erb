@@ -1,4 +1,4 @@
-<% if object.errors.any? %>
+<% if !object.nil? && object.errors.any? %>
   <div id="error_explanation">
   <h5><%= pluralize(object.errors.count, "error") %> prohibited this object from being saved:</h5>
   <ul>

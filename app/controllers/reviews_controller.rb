@@ -17,6 +17,7 @@ class ReviewsController < ApplicationController
 
     if @review.save
      redirect_to movie_path(@movie)
+     flash[:notice] = "Review created Successfully"
    else
       redirect_back(fallback_location: root_path)
    end
@@ -29,6 +30,7 @@ class ReviewsController < ApplicationController
   def update
     if @review.update(review_params)
       redirect_to movie_path(@movie)
+      flash[:notice] = "Review updated Successfully"
     else
       render 'edit'
     end

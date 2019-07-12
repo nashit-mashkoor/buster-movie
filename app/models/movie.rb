@@ -2,7 +2,7 @@ class Movie < ApplicationRecord
 
   validates_presence_of :title, :description
   validates_uniqueness_of :title
-  validates_numericality_of :length, :rating
+  validates_numericality_of :length
   validate :movie_attachment_format
   has_one_attached :thumbnail
   has_one_attached :trailer
