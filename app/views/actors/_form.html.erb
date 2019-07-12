@@ -1,31 +1,40 @@
-<%= form_with(model: actor, local: true) do |form| %>
-  <% if actor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(actor.errors.count, "error") %> prohibited this actor from being saved:</h2>
 
-      <ul>
-      <% actor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="sidebar">
+  <div class="searh-form">
+    <h4 class="sb-title"></h4>'
+      <% if edit == true %>
+        <h4 class="sb-title">Edit Actor</h4>
+      <% else %>
+        <h4 class="sb-title">New Actor</h4>
+      <% end%>
+      <%= render partial: 'partials/error', locals: {object: @actor} %>
+      <%= form_with(model: actor, local: true , html: {class: 'form-style-1', autocomplete: true} )  do |f| %>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 form-it">
+            <% if actor.actor_pic.attached? %>
+              <%= image_tag actor.resized_actor_pic(270,400) %>
+            <%else %>
+              <h1> No picture Found </h1>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 form-it">
+            <%= f.label :actor_pic, placeholder: ''  %>
+            <%= f.file_field :actor_pic, autocomplete: true, value: actor.actor_pic %>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 form-it">
+              <%= f.label :name %>
+              <%= f.text_field :name, placeholder: 'Actors Name', autocomplete: true, value: actor.name %>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-md-offset-4 form-it">                                
+            <%= f.button :submit , class: 'my-submit-btn movie-item-style-1 movie-item-style-2'%>
+          </div>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <% if actor.actor_pic.attached? %>
-      <%= image_tag actor.resized_actor_pic(200,200) %>
-    <%else %>
-      <h1> No picture Found </h1>
-    <% end %>
-    <%= form.label :actor_pic  %>
-    <%= form.file_field :actor_pic %>
   </div>
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div> 

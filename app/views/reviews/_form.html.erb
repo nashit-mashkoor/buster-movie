@@ -1,15 +1,51 @@
-<%= form_for(@review, url: movie_reviews_url(@movie))  do |f| %>
-	<div id="rating-form">
-		<label>Rating</label>
-	</div>
-	<%= f.label :comment %>
-  <%= f.text_field :comment %>
-	<%= f.button :submit%>
-<% end %>
-
-<script>
-	$('#rating-form').raty({
-		path: '/assets/',
-		scoreName: 'review[rating]'
-	});
-</script>
+<div class="sidebar">
+  <div class="searh-form">
+    <% if show_page == true %>
+      <h4 class="sb-title">Leave a comment</h4>
+      <%= render partial: 'partials/error', locals: {object: review} %>
+      <%= form_for(review, url: movie_reviews_url(movie), html: {class: 'form-style-1', autocomplete: true} )  do |f| %>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 form-it">
+            <%= f.label :title %>
+            <%= f.text_field :title, placeholder: 'Comment title', autocomplete: true, value: review.title  %>
+          </div>
+          <br />
+          <div class="col-md-10 col-md-offset-1 form-it">
+              <div id="rating-form">
+                <label>Rating</label>
+              </div>
+          </div>
+          <div class="col-md-10 col-md-offset-1 form-it">
+            <%= f.label :comment %>
+            <%= f.text_field :comment, placeholder: 'Comment Details', autocomplete: true, value: review.comment %>
+          </div>
+          <div class="col-md-5 col-md-offset-4 form-it">                                
+            <%= f.button :submit , class: 'my-submit-btn movie-item-style-1 movie-item-style-2'%>
+          </div>
+        </div>
+       <% end %>
+    <% else %>
+      <%= form_for(review, url: movie_review_url(movie, review), html: {class: 'form-style-1', autocomplete: true} )  do |f| %>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 form-it">
+            <%= f.label :title %>
+            <%= f.text_field :title, placeholder: 'Comment title', autocomplete: true, value: review.title  %>
+          </div>
+          <br />
+          <div class="col-md-10 col-md-offset-1 form-it">
+              <div class="rating-form" id="rating-form" >
+                <label>Rating</label>
+              </div>
+          </div>
+          <div class="col-md-10 col-md-offset-1 form-it">
+            <%= f.label :comment %>
+            <%= f.text_field :comment, placeholder: 'Comment Details', autocomplete: true, value: review.comment %>
+          </div>
+          <div class="col-md-5 col-md-offset-4 form-it">                                
+            <%= f.button :submit , class: 'my-submit-btn movie-item-style-1 movie-item-style-2'%>
+          </div>
+        </div>
+      <% end %> 
+    <% end %>   
+  </div>
+</div> 

@@ -1,12 +1,25 @@
-<div class="col-md-6 col-md-offset-3">
-
-	<div>
-
-		<h1>Edit Review</h1>
-
-			<%= render 'form' %>
-
-	</div>
-
+<header class="ht-header">
+  <div class="container">
+    <%= render 'partials/navbar' %>
+  </div>
+</header>
+<div class="hero common-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hero-ct">
+          <h1>Reviews</h1>
+          <ul class="breadcumb">
+            <li class="active"><a href="<%= home_movies_url %>">Home</a></li>
+            <li> <span class="ion-ios-arrow-right"></span> review edit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
+<div class="page-single">
+  <div class="container">
+    <%= render partial: 'form', locals: {review: @review , movie: @movie, show_page: false} %>
+  </div>
+</div>

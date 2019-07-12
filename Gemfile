@@ -40,6 +40,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
 gem 'gravatar_image_tag'
 gem 'image_processing'
+gem 'kaminari'
 gem 'mini_magick'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'

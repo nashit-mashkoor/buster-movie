@@ -1,5 +1,12 @@
 module ApplicationHelper
 
+  def calculate_average_review (movie)
+    if movie.reviews.blank?
+      @average_review = 0
+    else
+      @average_review = movie.reviews.average(:rating).round(2)
+    end
+  end
   def resource_name
     :user
   end
@@ -24,5 +31,9 @@ module ApplicationHelper
       gravatar_id = 1
       return "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{wsize}"
     end
+  end
+
+  def is_admin?
+    return (!current_user.nil? && current_user.super_user?)
   end
 end

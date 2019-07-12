@@ -22,3 +22,28 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(".alert-notice").delay(1000).slideUp(300);
 });
+
+
+$(document).ready(function(){
+  $('.average-review-rating').raty({
+    readOnly: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+
+  $('.review-rating').raty({
+    readOnly: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+
+
+  $('#rating-form').raty({
+    path: '/assets/',
+    scoreName: 'review[rating]'
+  });
+});

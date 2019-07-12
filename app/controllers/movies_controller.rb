@@ -1,11 +1,15 @@
 class MoviesController < ApplicationController
   include MoviesHelper
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :get_reviews, only: [:show]
 
   # GET /movies
   # GET /movies.json
   def home
-    @movies = Movie.all
+    @per_page_count = 5
+    @movies = Movie.page(params[:page]).per(@per_page_count)
+  
+
   end
   # GET /movies
   # GET /movies.json
@@ -16,11 +20,8 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
-    if @movie.reviews.blank?
-      @average_review = 0
-    else
-      @average_review = @movie.reviews.average(:rating).round(2)
-    end
+    @new_review =  Review.new
+    @actors = @movie.actors
   end
 
   # GET /movies/new
@@ -108,4 +109,12 @@ class MoviesController < ApplicationController
   def movie_params
     params.require(:movie).permit(:id, :title, :description, :length, :rating, :year, :thumbnail, :trailer, actor_ids: [], posters: [])
   end
+
+  def get_reviews 
+    @reviews_per_page = 4
+    @reviews = Review.page(params[:page]).per(@reviews_per_page).where(movie_id: @movie.id)
+  
+
+  end
+
 end

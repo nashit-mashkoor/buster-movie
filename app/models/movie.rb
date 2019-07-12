@@ -22,7 +22,7 @@ class Movie < ApplicationRecord
       self.thumbnail.variant(resize: "#{wsize}x#{hsize}!")
     else
       gravatar_id = 1
-      return "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
+      return "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{wsize}"
     end
 
   end
@@ -36,6 +36,9 @@ class Movie < ApplicationRecord
 
   #Check attached file format
   def movie_attachment_format
+    if !thumbnail.attached?
+      errors.add(:thumbnail, 'must be attached')
+    end
     if thumbnail.attached? && !thumbnail.content_type.in?(%w(image/jpeg image/png))
       errors.add(:thumbnail, 'must be in JPG or PNG')
     end

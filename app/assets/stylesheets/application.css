@@ -60,6 +60,83 @@
   border-color: #f5c6cb;
 }
 
+.my-edit-btn {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #ffc107;
+
+    font-family: 'Dosis', sans-serif;
+    font-size: 14px;
+   
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.my-edit-btn:hover{
+  background-color: #ffc107;
+}
+
+.my-delete-btn  {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #de0909;
+
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+.my-delete-btn:hover{
+    background-color: #de0909;
+}
+
+
+.my-submit-btn  {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #dcf836;
+
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+.my-submit-btn:hover{
+    background-color: #dcf836;
+}
+
+.my-remove-btn  {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #c4610a;
+
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+.my-remove-btn:hover{
+    background-color: #c4610a;
+}
+
+
 
 
 

@@ -18,7 +18,7 @@
               <a href="#page-top"></a>
             </li>
             <li><%= link_to 'Movies', home_movies_path%></li> 
-            <% if current_user.super_user %>
+            <% if is_admin?%>
               <li class="dropdown first">
                 <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
                 Admin<i class="fa fa-angle-down" aria-hidden="true"></i>

@@ -1,12 +1,13 @@
 class ReviewsController < ApplicationController
   before_action :find_movie, except: [:index]
-  before_action :find_review, only:  [:edit, :update, :destroy]
+  before_action :find_review, only:  [:edit, :update, :destroy, :show]
   before_action :authenticate_user!, only: [:new, :edit]
 
-  def index
-  end
+  def index;end
+  def show; end
   def new
     @review = Review.new
+
   end
 
   def create
@@ -15,10 +16,11 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
 
     if @review.save
-      redirect_to movie_path(@movie)
-    else
-      render 'new'
-    end
+     redirect_to movie_path(@movie)
+   else
+      redirect_back(fallback_location: root_path)
+   end
+   
   end
 
   def edit
@@ -40,7 +42,7 @@ class ReviewsController < ApplicationController
   private
 
     def review_params
-      params.require(:review).permit(:rating, :comment)
+      params.require(:review).permit(:title,:rating, :comment)
     end
 
     def find_movie
