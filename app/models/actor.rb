@@ -12,12 +12,12 @@ class Actor < ApplicationRecord
   end
   #purge  attachment
   def purge_actor_attachments
-    if errors.any?
+    if errors[:actor_pic].any?
       actor_pic.purge if actor_pic.attached?
     end
   end
   #resize picture
   def resized_actor_pic(wsize = 40, hsize = 40)
-    actor_pic.variant(resize: "#{wsize}x#{hsize}!") if actor_pic.attached?
+      actor_pic.variant(resize: "#{wsize}x#{hsize}!") if actor_pic.attached?
   end
 end

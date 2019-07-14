@@ -57,15 +57,17 @@
                     </div>
               <div class="mv-item-infor">
                 <h6><a href="<%= movie_url(movie)%>"><%= movie.title %></a></h6>
-                <p class="rate"><i class="ion-android-star"></i><span><%= calculate_average_review(movie)%></span> /5</p>
+                <p class="rate"><i class="ion-android-star"></i><span><%= calculate_average_review(movie) %></span> /5</p>
               </div>
-              <button class="my-edit-btn">
-                <%= link_to 'Edit', edit_movie_path(movie) %>
-              </button>
-              <br />
-              <button class="my-delete-btn">
-                <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
-              </button>
+               <% if is_admin? %> 
+                <button class="my-edit-btn">
+                  <%= link_to 'Edit', edit_movie_path(movie) %>
+                </button>
+                <br />
+                <button class="my-delete-btn">
+                  <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </button>
+              <% end %>
             </div>  
 
           <% end %>            

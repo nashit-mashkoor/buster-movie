@@ -1,0 +1,33 @@
+<div class="sidebar">
+  <div class="searh-form">
+    <h4 class="sb-title">Log In</h4>
+    <%= render partial: 'partials/error', locals: {object: @movie} %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-style-1'}) do |f| %>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-1 form-it">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-1  form-it">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+      </div>
+      <% if devise_mapping.rememberable? %>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-1  form-it">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-3 form-it">
+         <%= f.submit "Log in", class: 'my-submit-btn movie-item-style-1 movie-item-style-2'%>
+        </div>
+      </div>
+   <% end %>
+  </div>
+</div>

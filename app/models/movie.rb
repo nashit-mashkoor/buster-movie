@@ -43,12 +43,12 @@ class Movie < ApplicationRecord
       errors.add(:thumbnail, 'must be in JPG or PNG')
     end
     if trailer.attached? && !trailer.content_type.in?(%w(video/mp4 video/quicktime))
-      errors.add(:thumbnail, 'must be in MP4 or Quicktime')
+      errors.add(:trailer, 'must be in MP4 or Quicktime')
     end
     if posters.attached?
       posters.each do |poster|
         unless poster.content_type.in?(%w(image/jpeg image/png))
-          errors.add(:images, 'need to be in JPEF or PNG')
+          errors.add('posters'+poster.id.to_s, 'need to be in JPEF or PNG')
         end
       end
     end
@@ -57,16 +57,15 @@ class Movie < ApplicationRecord
   def purge_posters
     if posters.attached?
       posters.each do |poster|
-        poster.purge
+        poster.purge if errors['poster'+poster.id.to_s].any?
       end
-      posters.purge
     end
   end
   #purge all attachments
   def check_movie_attachments
     if errors.any?
-      thumbnail.purge if thumbnail.attached?
-      trailer.purge if trailer.attached?
+      thumbnail.purge if thumbnail.attached? && errors[:thumbnail].any?
+      trailer.purge if trailer.attached? && errors[:trailer].any? 
       purge_posters
     end
   end

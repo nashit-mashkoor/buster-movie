@@ -56,7 +56,7 @@
 <div class="page-single">
   <div class="container">
     <div class="row ipad-width2">
-      <div class="col-md-9 col-sm-12 col-xs-12">
+      <div>
         <div class="topbar-filter">
           <p>Found <span><%= Actor.all.count%></span> in total</p>
           <label>Sort by:</label>
@@ -72,8 +72,9 @@
           <a  href="celebritygrid01.html" class="grid"><i class="ion-grid active"></i></a>
         </div>
         <div class="celebrity-items">
-          <div class="ceb-item">
-            <% @actors.each do |actor| %>
+          <% @actors.each do |actor| %>
+            <div class="ceb-item">
+            
               <% if !actor.nil? %>
                 <%= image_tag actor.resized_actor_pic(270, 400) , html: {alt: ""}%>
               <% end %>
@@ -93,8 +94,8 @@
                   <% end %>
                 </div>
               <% end %>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
         <div class="topbar-filter">
           <label>Reviews per page:</label>
@@ -107,7 +108,8 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 col-xs-12 col-sm-12">
+    <!--   For later improvememnt -->
+<!--       <div class="col-md-3 col-xs-12 col-sm-12">
         <div class="sidebar">
             <div class="searh-form">
             <h4 class="sb-title">Search celebrity</h4>
@@ -155,7 +157,7 @@
             </form>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

@@ -6,6 +6,7 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def home
+
     @per_page_count = 5
     @movies = Movie.page(params[:page]).per(@per_page_count)
   
@@ -22,6 +23,7 @@ class MoviesController < ApplicationController
   def show
     @new_review =  Review.new
     @actors = @movie.actors
+    @posters_per_page = 4
   end
 
   # GET /movies/new
@@ -51,15 +53,20 @@ class MoviesController < ApplicationController
   # PATCH/PUT /movies/1
   # PATCH/PUT /movies/1.json
   def update
+    options = {}
+    if movie_params[:movie_update_type] == 'actor'
+        actor_ids = @movie.actor_ids
+        options = movie_params.merge(actor_ids: movie_params[:actor_ids] + actor_ids)
+      else
+        options = movie_params
+    end
+    options.delete(:movie_update_type)
     respond_to do |format|
-      actor_ids = @movie.actor_ids
-      options = movie_params.merge(actor_ids: movie_params[:actor_ids] + actor_ids)
-
       if @movie.update(options)
         format.html { redirect_to @movie, notice: 'Movie was successfully updated.'}
         format.json { render :show, status: :ok, location: @movie }
       else
-        format.html { render :edit }
+        format.html { redirect_to @movie, alert: 'Movie update was unsucccessfull' }
         format.json { render json: @movie.errors, status: :unprocessable_entity }
       end
     end
@@ -107,7 +114,7 @@ class MoviesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def movie_params
-    params.require(:movie).permit(:id, :title, :description, :length, :rating, :year, :thumbnail, :trailer, actor_ids: [], posters: [])
+    params.require(:movie).permit(:id, :title, :description, :length, :rating, :year, :thumbnail, :trailer,:movie_update_type, actor_ids: [], posters: [])
   end
 
   def get_reviews 

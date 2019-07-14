@@ -1,9 +1,11 @@
 module ApplicationHelper
 
   def calculate_average_review (movie)
-    if movie.reviews.blank?
+    if movie.reviews.blank? || movie.reviews.nil?
+      
       @average_review = 0
     else
+      
       @average_review = movie.reviews.average(:rating).round(2)
     end
   end

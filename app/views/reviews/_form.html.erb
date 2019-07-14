@@ -1,8 +1,8 @@
 <div class="sidebar">
   <div class="searh-form">
     <% if show_page == true %>
-      <h4 class="sb-title">Leave a comment</h4>
       <%= render partial: 'partials/error', locals: {object: @review} %>
+      <h4 class="sb-title">Leave a comment</h4>
       <%= form_for(review, url: movie_reviews_url(movie), html: {class: 'form-style-1', autocomplete: true} )  do |f| %>
         <div class="row">
           <div class="col-md-10 col-md-offset-1 form-it">
@@ -26,7 +26,7 @@
        <% end %>
     <% else %>
       <%= render partial: 'partials/error', locals: {object: @review} %>
-      <%= form_for(review, url: movie_review_url(movie, review), html: {class: 'form-style-1', autocomplete: true} )  do |f| %>
+      <%= form_for(review, url: review_url(review), html: {class: 'form-style-1', autocomplete: true} )  do |f| %>
         <div class="row">
           <div class="col-md-10 col-md-offset-1 form-it">
             <%= f.label :title %>

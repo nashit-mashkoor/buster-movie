@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :actors
   resources :movies do
-  resources :reviews, except: [:index]
+  resources :reviews, only: [:new, :create]
     member do
       delete 'delete_poster/:poster_id', to: 'movies#delete_poster', as: 'delete_poster'
       delete 'delete_trailer', to: 'movies#delete_trailer', as: 'delete_trailer'
@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       get 'land', to: 'movies#land'
     end
   end
-  resources :reviews, only: [:index] 
+  
+  #Temporarily
+  resources :reviews, only: [:show, :index, :edit, :update, :destroy]  
   devise_for :users
   get 'pages/index'
 
