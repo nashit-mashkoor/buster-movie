@@ -1,235 +1,270 @@
-<!-- <p id="notice"><%= notice %></p>
-<h1>Movies</h1>
-
-<table>
-  <thead>
-  <tr>
-    <th colspan="3">   </th>
-    <th colspan="3">Title</th>
-    <th colspan="3">Length</th>
-    <th colspan="3">Rating</th>
-    <th colspan="3">Year</th>
-
-  </tr>
-  </thead>
-
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td colspan="3"> <%= image_tag movie.thumb_nail(40) %></td>
-        <td colspan="3"><%= movie.title %></td>
-        <td colspan="3"><%= movie.length %></td>
-        <td colspan="3"><%= movie.rating %></td>
-        <td colspan="3"><%= movie.year %></td>
-        <td colspan="3"><%= link_to 'Show', movie %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td ><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Movie', new_movie_path %> -->
-
-
-<header class="ht-header">
-  <div class="container">
-    <%= render 'partials/navbar' %>
-    <!-- top search form -->
-      <div class="top-search">
-        <select>
-        <option value="united">TV show</option>
-        <option value="saab">Others</option>
-      </select>
-      <input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
-      </div>
-  </div>
+<header class="ht-header full-width-hd">
+    <div class="row">
+      <%= render 'partials/navbar' %>
+    </div>
 </header>
-<div class="hero common-hero">
+<div class="slider sliderv2">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <div class="hero-ct">
-          <h1> movie listing - list</h1>
-          <ul class="breadcumb">
-            <li class="active"><a href="#">Home</a></li>
-            <li> <span class="ion-ios-arrow-right"></span> movie listing</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="page-single movie_list">
-  <div class="container">
-    <div class="row ipad-width2">
-      <div class="col-md-8 col-sm-12 col-xs-12">
-        <div class="topbar-filter">
-          <p>Found <span>1,608 movies</span> in total</p>
-          <label>Sort by:</label>
-          <select>
-            <option value="popularity">Popularity Descending</option>
-            <option value="popularity">Popularity Ascending</option>
-            <option value="rating">Rating Descending</option>
-            <option value="rating">Rating Ascending</option>
-            <option value="date">Release date Descending</option>
-            <option value="date">Release date Ascending</option>
-          </select>
-          <a href="movielist.html" class="list"><i class="ion-ios-list-outline active"></i></a>
-          <a  href="moviegrid.html" class="grid"><i class="ion-grid"></i></a>
-        </div>
-        <div class="movie-item-style-2">
-          <img src="images/uploads/mv1.jpg" alt="">
-          <div class="mv-item-infor">
-            <h6><a href="moviesingle.html">oblivion <span>(2012)</span></a></h6>
-            <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
-            <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...</p>
-            <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
-            <p>Director: <a href="#">Joss Whedon</a></p>
-            <p>Stars: <a href="#">Robert Downey Jr.,</a> <a href="#">Chris Evans,</a> <a href="#">  Chris Hemsworth</a></p>
-          </div>
-        </div>
-        <div class="movie-item-style-2">
-          <img src="images/uploads/mv2.jpg" alt="">
-          <div class="mv-item-infor">
-            <h6><a href="moviesingle.html">into the wild <span>(2014)</span></a></h6>
-            <p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
-            <p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat...</p>
-            <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
-            <p>Director: <a href="#">Anthony Russo,</a><a href="#">Joe Russo</a></p>
-            <p>Stars: <a href="#">Chris Evans,</a> <a href="#">Samuel L. Jackson,</a> <a href="#">  Scarlett Johansson</a></p>
-          </div>
-        </div>
-        <div class="movie-item-style-2">
-          <img src="images/uploads/mv3.jpg" alt="">
-          <div class="mv-item-infor">
-            <h6><a href="moviesingle.html">blade runner  <span>(2015)</span></a></h6>
-            <p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
-            <p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
-            <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
-            <p>Director: <a href="#">Peyton Reed</a></p>
-            <p>Stars: <a href="#">Paul Rudd,</a> <a href="#"> Michael Douglas</a></p>
-          </div>
-        </div>
-        <div class="movie-item-style-2">
-          <img src="images/uploads/mv4.jpg" alt="">
-          <div class="mv-item-infor">
-            <h6><a href="moviesingle.html">Mulholland pride<span> (2013)  </span></a></h6>
-            <p class="rate"><i class="ion-android-star"></i><span>7.2</span> /10</p>
-            <p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
-            <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
-            <p>Director: <a href="#">Shane Black</a></p>
-            <p>Stars: <a href="#">Robert Downey Jr., </a> <a href="#">  Guy Pearce,</a><a href="#">Don Cheadle</a></p>
-          </div>
-        </div>
-        <div class="movie-item-style-2">
-          <img src="images/uploads/mv5.jpg" alt="">
-          <div class="mv-item-infor">
-            <h6><a href="moviesingle.html">skyfall: evil of boss<span> (2013)  </span></a></h6>
-            <p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
-            <p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
-            <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
-            <p>Director: <a href="#">Alan Taylor</a></p>
-            <p>Stars: <a href="#">Chris Hemsworth,  </a> <a href="#">  Natalie Portman,</a><a href="#">Tom Hiddleston</a></p>
-          </div>
-        </div>
-        <div class="topbar-filter">
-          <label>Movies per page:</label>
-          <select>
-            <option value="range">5 Movies</option>
-            <option value="saab">10 Movies</option>
-          </select>
-          <div class="pagination2">
-            <span>Page 1 of 2:</span>
-            <a class="active" href="#">1</a>
-            <a href="#">2</a>
-            <a href="#"><i class="ion-arrow-right-b"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-12 col-xs-12">
-        <div class="sidebar">
-          <div class="searh-form">
-            <h4 class="sb-title">Search for movie</h4>
-            <form class="form-style-1" action="#">
+        <div class="slider-single-item">
+          <% @slider_movies.each do |movie| %>
+            <div class="movie-item">
               <div class="row">
-                <div class="col-md-12 form-it">
-                  <label>Movie name</label>
-                  <input type="text" placeholder="Enter keywords">
-                </div>
-                <div class="col-md-12 form-it">
-                  <label>Genres & Subgenres</label>
-                  <div class="group-ip">
-                    <select
-                      name="skills" multiple="" class="ui fluid dropdown">
-                      <option value="">Enter to filter genres</option>
-                      <option value="Action1">Action 1</option>
-                                  <option value="Action2">Action 2</option>
-                                  <option value="Action3">Action 3</option>
-                                  <option value="Action4">Action 4</option>
-                                  <option value="Action5">Action 5</option>
-                    </select>
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                  <div class="title-in">
+                    <h1><a href="#"><%=movie.title%> <span><%= movie.year.year%></span></a></h1>
+                  <div class="social-btn">
+                    <a href="<%= movie.thumb_nail(400,400)%>" class="parent-btn"><i class="ion-play"></i> Download Trailer</a>
+                    <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
+                    <div class="hover-bnt">
+                      <a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>share</a>
+                      <div class="hvr-item">
+                        <a href="www.fb.com" class="hvr-grow"><i class="ion-social-facebook"></i></a>
+                        <a href="www.twitter.com" class="hvr-grow"><i class="ion-social-twitter"></i></a>
+                        <a href="www.google.com" class="hvr-grow"><i class="ion-social-googleplus"></i></a>
+                        <a href="www.youtube.com" class="hvr-grow"><i class="ion-social-youtube"></i></a>
+                      </div>
+                    </div>    
                   </div>
-                  
-                </div>
-                <div class="col-md-12 form-it">
-                  <label>Rating Range</label>
-                  
-                   <select>
-                    <option value="range">-- Select the rating range below --</option>
-                    <option value="saab">-- Select the rating range below --</option>
-                    <option value="saab">-- Select the rating range below --</option>
-                    <option value="saab">-- Select the rating range below --</option>
-                  </select>
-                  
-                </div>
-                <div class="col-md-12 form-it">
-                  <label>Release Year</label>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <select>
-                        <option value="range">From</option>
-                        <option value="number">10</option>
-                        <option value="number">20</option>
-                        <option value="number">30</option>
-                      </select>
+                    <div class="mv-details">
+                      <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+                      <ul class="mv-infor">
+                        <li>  Run Time: <%=movie.length%> mins’ </li>
+                        <li>  Release: <%=movie.year.day%> <%=movie.year.month%>, <%=movie.year.year%>, /li>
+                      </ul>
                     </div>
-                    <div class="col-md-6">
-                      <select>
-                        <option value="range">To</option>
-                        <option value="number">20</option>
-                        <option value="number">30</option>
-                        <option value="number">40</option>
-                      </select>
-                    </div>
+                    <div class="btn-transform transform-vertical">
+                    <div><a href="#" class="item item-1 redbtn">more detail</a></div>
+                    <div><a href=" <%= movie_path(movie) %>" class="item item-2 redbtn hvrbtn">more detail</a></div>
+                  </div>    
                   </div>
                 </div>
-                <div class="col-md-12 ">
-                  <input class="submit" type="submit" value="submit">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="mv-img-2">
+                    <a href="#"><%= image_tag movie.thumb_nail(270, 414) %></a>
+                  </div>
                 </div>
-              </div>
-            </form>
-          </div>
-          <div class="ads">
-            <img src="images/uploads/ads1.png" alt="">
-          </div>
-          <div class="sb-facebook sb-it">
-            <h4 class="sb-title">Find us on Facebook</h4>
-            <iframe src="#" data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhaintheme%2F%3Ffref%3Dts&tabs=timeline&width=340&height=315px&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId"  height="315" style="width:100%;border:none;overflow:hidden" ></iframe>
-          </div>
-          <div class="sb-twitter sb-it">
-            <h4 class="sb-title">Tweet to us</h4>
-            <div class="slick-tw">
-              <div class="tweet item" id="599202861751410688">
-              </div>
-              <div class="tweet item" id="297462728598122498">
-              </div>
-            </div>              
-          </div>
+              </div>  
+            </div>
+          <% end %>
         </div>
+      </div>
+  </div>
+</div>
+<div class="movie-items  full-width">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="title-hd">
+        <h2>In Demand</h2>
+        <a href="<%= home_movies_path %>" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+      </div>
+      <div class="tabs">
+        <ul class="tab-links">
+          <li class="active"><a href="#tab1-h2">#Popular</a></li>
+          <li><a href="#tab2-h2"> #Coming soon</a></li>
+          <li><a href="#tab3-h2">  #Top rated  </a></li>
+          <li><a href="#tab4-h2"> #Most reviewed</a></li>                        
+        </ul>
+          <div class="tab-content">
+              <div id="tab1-h2" class="tab active">
+                  <div class="row">
+                    <div class="slick-multiItem2">
+                      <% @movies.each do |movie| %>
+                        <div class="slide-it">
+                          <div class="movie-item">
+                            <div class="mv-img">
+                              <%= image_tag movie.thumb_nail(246, 377.95) %>
+                            </div>
+                            <div class="hvr-inner">
+                              <a  href="<%= movie_path(movie) %>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                            </div>
+                            <div class="title-in">
+                              <h6><a href="<%= movie_path(movie) %>"><%= movie.title%></a></h6>
+                              <p><i class="ion-android-star"></i><span><%= movie.rating%></span> /5</p>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+              <div id="tab2-h2" class="tab">
+                 <div class="row">
+                    <div class="slick-multiItem2">
+                      <% @movies.each do |movie| %>
+                        <div class="slide-it">
+                          <div class="movie-item">
+                            <div class="mv-img">
+                              <%= image_tag movie.thumb_nail(246, 377.95) %>
+                            </div>
+                            <div class="hvr-inner">
+                              <a  href="<%= movie_path(movie) %>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                            </div>
+                            <div class="title-in">
+                              <h6><a href="<%= movie_path(movie) %>"><%= movie.title%></a></h6>
+                              <p><i class="ion-android-star"></i><span><%= movie.rating%></span> /5</p>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+              <div id="tab3-h2" class="tab">
+                <div class="row">
+                    <div class="slick-multiItem2">
+                      <% @movies.each do |movie| %>
+                        <div class="slide-it">
+                          <div class="movie-item">
+                            <div class="mv-img">
+                              <%= image_tag movie.thumb_nail(246, 377.95) %>
+                            </div>
+                            <div class="hvr-inner">
+                              <a  href="<%= movie_path(movie) %>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                            </div>
+                            <div class="title-in">
+                              <h6><a href="<%= movie_path(movie) %>"><%= movie.title%></a></h6>
+                              <p><i class="ion-android-star"></i><span><%= movie.rating%></span> /5</p>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+               <div id="tab4-h2" class="tab">
+                <div class="row">
+                    <div class="slick-multiItem2">
+                      <% @movies.each do |movie| %>
+                        <div class="slide-it">
+                          <div class="movie-item">
+                            <div class="mv-img">
+                              <%= image_tag movie.thumb_nail(246, 377.95) %>
+                            </div>
+                            <div class="hvr-inner">
+                              <a  href="<%= movie_path(movie) %>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                            </div>
+                            <div class="title-in">
+                              <h6><a href="<%= movie_path(movie) %>"><%= movie.title%></a></h6>
+                              <p><i class="ion-android-star"></i><span><%= movie.rating%></span> /5</p>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+          </div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="trailers full-width">
+    <div class="row ipad-width">
+      <!-- Trailers -->
+      <div class="col-md-9 col-sm-12 col-xs-12">
+          <div class="title-hd">
+            <h2>in theater</h2>
+            <a href="#" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+          </div>
+          <div class="videos">
+            <div class="slider-for-2 video-ft">
+               <div>
+                  <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/1Q8fG0TtVAY"></iframe>
+                </div>
+                <div>
+                  <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/w0qQkSuWOS8"></iframe>
+                </div>
+                <div>
+                  <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/44LdLqgOpjo"></iframe>
+                </div>
+                <div>
+                  <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/gbug3zTm3Ws"></iframe>
+                </div>
+                <div>
+                  <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/e3Nl_TCQXuw"></iframe>
+                </div>
+                <div>
+                  <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/NxhEZG0k9_w"></iframe>
+                </div>
+
+            </div>
+            <div class="slider-nav-2 thumb-ft">
+              <div class="item">
+                <div class="trailer-img">
+                  <img src="<%image_path('uploads/trailer7.jpg')%>"  alt="photo by Barn Images" width="4096" height="2737">
+                </div>
+                <div class="trailer-infor">
+                              <h4 class="desc">Wonder Woman</h4>
+                              <p>2:30</p>
+                            </div>
+              </div>
+              <div class="item">
+                <div class="trailer-img">
+                  <img src="images/uploads/trailer2.jpg"  alt="photo by Barn Images"  width="350" height="200">
+                </div>
+                <div class="trailer-infor">
+                              <h4 class="desc">Oblivion: Official Teaser Trailer</h4>
+                              <p>2:37</p>
+                            </div>
+              </div>
+              <div class="item">
+                <div class="trailer-img">
+                  <img src="images/uploads/trailer6.jpg" alt="photo by Joshua Earle" width="509" height="301">
+                </div>
+                <div class="trailer-infor">
+                              <h4 class="desc">Exclusive Interview:  Skull Island</h4>
+                              <p>2:44</p>
+                            </div>
+              </div>
+              <div class="item">
+                <div class="trailer-img">
+                  <img src="images/uploads/trailer3.png" alt="photo by Alexander Dimitrov" width="100" height="56">
+                </div>
+                <div class="trailer-infor">
+                              <h4 class="desc">Logan: Director James Mangold Interview</h4> 
+                              <p>2:43</p>
+                            </div>
+              </div>
+              <div class="item">
+                <div class="trailer-img">
+                  <img src="images/uploads/trailer4.png"  alt="photo by Wojciech Szaturski" width="100" height="56">
+                </div>
+                <div class="trailer-infor">
+                              <h4 class="desc">Beauty and the Beast: Official Teaser Trailer 2</h4> 
+                              <p>2: 32</p>
+                            </div>  
+              </div>
+              <div class="item">
+                <div class="trailer-img">
+                  <img src="images/uploads/trailer5.jpg"  alt="photo by Wojciech Szaturski" width="360" height="189">
+                </div>
+                <div class="trailer-infor">
+                              <h4 class="desc">Fast&Furious 8</h4>  
+                              <p>3:11</p>
+                            </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="col-md-3 col-sm-12 col-xs-12  ">
+        <div class="sidebar" align="center">
+          <div class="celebrities">
+            <h4 class="sb-title">Spotlight Celebrities</h4>
+            <% @actors.each do |actor| %>
+              <div class="celeb-item">
+                <%=image_tag (actor.resized_actor_pic(70,70)) %> 
+                <div class="celeb-author">
+                  <h6><a href="#"><%= actor.name %></a></h6>
+                  <span>Actor</span>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--end of latest new v2 section-->

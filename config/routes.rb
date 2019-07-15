@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'users_controller/index'
-    get 'users_controller/destroy'
-  end
   resources :actors
   resources :movies do
   resources :reviews, only: [:new, :create]

@@ -18,7 +18,6 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.movie_id = @movie.id
     @review.user_id = current_user.id
-    byebug
     respond_to do |format|
       if @review.save
         format.html{redirect_to movie_path(@movie), notice: "Review created Successfully"} 
@@ -46,7 +45,10 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to request.referer, notice: 'Review was successfully deleted'
+    respond_to do |format|
+      format.html { redirect_to request.referer, notice: 'Review was successfully deleted' }
+      format.js
+    end
   end
 
   private

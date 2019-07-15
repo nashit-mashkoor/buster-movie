@@ -14,7 +14,16 @@ class MoviesController < ApplicationController
   end
   # GET /movies
   # GET /movies.json
-  def index;end
+   #GET /movies also the root page
+  def index
+    @movies = Movie.all
+    @slider_movies = Movie.all.limit(2)
+    @popular  = Movie.all.limit(2)
+    @coming_soon = Movie.all.limit(2)
+    @top_rated = Movie.all.limit(2)
+    @most_reviewed = Movie.all.limit(2)
+    @actors = Actor.all
+  end
 
   # GET /movies/1
   # GET /movies/1.json
@@ -100,10 +109,6 @@ class MoviesController < ApplicationController
     redirect_to movie_path(@movie), notice: 'Actor was successfully removed'
   end
 
-  #GET /movies/land also the root page
-  def land
-  end
-
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_movie
@@ -122,15 +127,5 @@ class MoviesController < ApplicationController
 
   end
 
-  private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_movie
-    @movie = Movie.find(params[:id])
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def movie_params
-    params.require(:movie).permit(:id, :title, :description, :length, :rating, :year, :thumbnail, :trailer,:movie_update_type, actor_ids: [], posters: [])
-  end
 
 end
