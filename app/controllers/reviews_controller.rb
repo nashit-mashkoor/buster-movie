@@ -18,18 +18,16 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.movie_id = @movie.id
     @review.user_id = current_user.id
-
-    if @review.save
-     redirect_to movie_path(@movie)
-     flash[:notice] = "Review created Successfully"
-   else
     byebug
-    flash[:alert] = "Review creation Unsuccessfull"
-    #This stops error from reload
-    redirect_to movie_path(@movie)
-
-   end
-   
+    respond_to do |format|
+      if @review.save
+        format.html{redirect_to movie_path(@movie), notice: "Review created Successfully"} 
+        format.js
+      else
+        format.html{redirect_to movie_path(@movie), notice: "Review creation failer"}
+         format.js { render text: 'alert("Review Creation Failed");' }
+      end
+    end
   end
 
   def edit

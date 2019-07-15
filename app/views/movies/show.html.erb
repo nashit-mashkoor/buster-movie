@@ -160,7 +160,6 @@
                               <h3>Related Movies To</h3>
                             <h2><%= @movie.title %></h2>
                             </div>
-                            <a href="#" class="redbtn">Write Review</a>
                           </div>
                           <div class="topbar-filter">
                             <p>Found <span><%= @movie.reviews.count%> reviews</span> in total</p>
@@ -174,6 +173,7 @@
                               <option value="date">Release date Ascending</option>
                             </select>
                           </div>
+                        <div id="review-list">
                         <% @reviews.each do |review| %>  
                           <div class="mv-user-review-item">
                             <div class="user-infor">
@@ -205,6 +205,7 @@
                             </div>
                           </div>
                         <% end %> 
+                       </div>
                         <br/ >                   
                         <%= render partial: 'reviews/form', locals: {review: @new_review, movie: @movie, show_page: true} %>
                         <div class="topbar-filter">

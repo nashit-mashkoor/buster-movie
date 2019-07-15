@@ -3,7 +3,7 @@
     <% if show_page == true %>
       <%= render partial: 'partials/error', locals: {object: @review} %>
       <h4 class="sb-title">Leave a comment</h4>
-      <%= form_for(review, url: movie_reviews_url(movie), html: {class: 'form-style-1', autocomplete: true} )  do |f| %>
+      <%= form_for(review, url: movie_reviews_url(movie), remote: true, html: {class: 'form-style-1', autocomplete: true} )  do |f| %>
         <div class="row">
           <div class="col-md-10 col-md-offset-1 form-it">
             <%= f.label :title %>
