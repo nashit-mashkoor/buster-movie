@@ -198,6 +198,11 @@
                                 </div>
                               </div>
                             <% end %>
+                            <div class = "row" align="center">
+                              <div class= "col-md-6 col-md-offset-3">  
+                                <%= render partial: 'admin/reports/form', locals: { user: current_user.id, review: review.id} %>                
+                              </div>
+                            </div>
                           </div>
                         <% end %> 
                         <br/ >                   

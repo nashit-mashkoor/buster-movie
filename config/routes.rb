@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'users_controller/index'
+    get 'users_controller/destroy'
+  end
   resources :actors
   resources :movies do
   resources :reviews, only: [:new, :create]
@@ -11,13 +15,15 @@ Rails.application.routes.draw do
       get 'home', to: 'movies#home'
       get 'land', to: 'movies#land'
     end
-  end
-  
+  end 
   #Temporarily
   resources :reviews, only: [:show, :index, :edit, :update, :destroy]  
   devise_for :users
   get 'pages/index'
-
+  namespace :admin do
+    resources :reports, only: [:index, :create, :destroy]  
+    resources :users, only: [:index, :destroy, :edit, :update]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'movies#home'
 

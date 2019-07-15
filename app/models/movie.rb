@@ -12,7 +12,7 @@ class Movie < ApplicationRecord
   after_validation :check_movie_attachments, only: [:create]
   before_destroy   :purge_posters
 
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   
 
   #Resize thumb nail

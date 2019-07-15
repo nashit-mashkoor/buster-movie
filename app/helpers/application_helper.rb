@@ -38,4 +38,7 @@ module ApplicationHelper
   def is_admin?
     return (!current_user.nil? && current_user.super_user?)
   end
+  def authenticate_admin!
+    redirect_to(root_path, alert: 'You are not a admin') unless  is_admin?
+  end
 end

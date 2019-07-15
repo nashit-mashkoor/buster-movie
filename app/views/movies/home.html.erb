@@ -60,10 +60,7 @@
                 <p class="rate"><i class="ion-android-star"></i><span><%= calculate_average_review(movie) %></span> /5</p>
               </div>
                <% if is_admin? %> 
-                <button class="my-edit-btn">
-                  <%= link_to 'Edit', edit_movie_path(movie) %>
-                </button>
-                <br />
+               <br/ >
                 <button class="my-delete-btn">
                   <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
                 </button>

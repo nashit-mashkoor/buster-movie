@@ -11,6 +11,7 @@ class User < ApplicationRecord
   after_validation :check_user_attachments
 
   has_many :reviews, dependent: :destroy
+  has_many :reports, dependent: :destroy
 
   #Delete profile picture
   def purge_profile_pic
@@ -19,13 +20,13 @@ class User < ApplicationRecord
 
   def user_attachment_format
     if profile_pic.attached? && !profile_pic.content_type.in?(%w(image/jpeg image/png))
-      errors.add(:thumbnail, 'must be in JPG or PNG')
+      errors.add(:profile_pic, 'must be in JPG or PNG')
     end
   end
 
   #purge all attachments
   def check_user_attachments
-    if errors.any?
+    if errors[:profile_pic].any?
       profile_pic.purge if profile_pic.attached?
     end
   end

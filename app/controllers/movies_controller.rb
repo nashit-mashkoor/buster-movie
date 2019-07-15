@@ -14,9 +14,7 @@ class MoviesController < ApplicationController
   end
   # GET /movies
   # GET /movies.json
-  def index
-    @movies = Movie.all
-  end
+  def index;end
 
   # GET /movies/1
   # GET /movies/1.json
@@ -122,6 +120,17 @@ class MoviesController < ApplicationController
     @reviews = Review.page(params[:page]).per(@reviews_per_page).where(movie_id: @movie.id)
   
 
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def movie_params
+    params.require(:movie).permit(:id, :title, :description, :length, :rating, :year, :thumbnail, :trailer,:movie_update_type, actor_ids: [], posters: [])
   end
 
 end

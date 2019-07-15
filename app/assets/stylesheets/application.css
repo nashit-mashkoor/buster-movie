@@ -136,16 +136,22 @@
     background-color: #c4610a;
 }
 
-.my-x.btn
-{
-    overflow:hidden;
+.my-report-btn  {
     color: #ffffff;
     background-color: transparent;
-    
-}
-.my-x-btn:hover{
-    ]color: #c4610a;
+    border-color: #09b86f;
 
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+.my-report-btn:hover{
+    background-color: #09b86f;
 }
 
 
