@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 #Additional gem
 gem 'devise'
+gem 'devise_invitable'
 gem 'gravatar_image_tag'
 gem 'image_processing'
 gem 'kaminari'

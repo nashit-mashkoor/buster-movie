@@ -1,9 +1,10 @@
 class User < ApplicationRecord
   attr_accessor :remove_profile_pic
+  attr_accessor :skip_name_picture_validation
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :invitable
   validates :name, presence: true
   validate :user_attachment_format
   has_one_attached :profile_pic
