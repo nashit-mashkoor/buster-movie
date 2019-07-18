@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :reports, dependent: :destroy
 
+  has_many :favourites, dependent: :destroy
+  has_many :favourite_movies, through: :favourites, source: :movie
+ 
   #Delete profile picture
   def purge_profile_pic
     profile_pic.purge_later
@@ -35,4 +38,6 @@ class User < ApplicationRecord
   def remove_profile_picture?
     remove_profile_pic == '1'
   end
+
+ 
 end

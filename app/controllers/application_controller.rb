@@ -13,10 +13,7 @@ class ApplicationController < ActionController::Base
 
 
   end
-
-  def authenticate_inviter!
-      return (!current_user.nil? && current_user.super_user?)
-  end
+  
   def validate_resource
     unless update_resource(resource, account_update_params.except(:profile_pic))
       clean_up_passwords resource

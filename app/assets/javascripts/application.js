@@ -48,3 +48,10 @@ $(document).ready(function(){
   });
 });
 
+function flash_update(html)  {
+   $('div#flash-id').empty();
+   $('div#flash-id').html(html);
+   $('.alert-alert').delay(10000).slideUp(300);
+   $('.alert-notice').delay(10000).slideUp(300);
+
+}

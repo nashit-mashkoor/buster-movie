@@ -20,11 +20,13 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     respond_to do |format|
       if @review.save
+        flash.now[:notice]="Review created Successfully" 
         format.html{redirect_to movie_path(@movie), notice: "Review created Successfully"} 
         format.js
       else
-        format.html{redirect_to movie_path(@movie), notice: "Review creation failer"}
-         format.js { render text: 'alert("Review Creation Failed");' }
+        flash.now[:alert]="Review creation failed" 
+        format.html{redirect_to movie_path(@movie), notice: "Review creation failed"}
+         format.js 
       end
     end
   end
@@ -46,6 +48,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
+      flash.now[:alert] = "Review was successfully deleted"
       format.html { redirect_to request.referer, notice: 'Review was successfully deleted' }
       format.js
     end

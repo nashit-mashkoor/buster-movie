@@ -1,1 +1,4 @@
-alert("<%= (@report.user.name)%> Your report has been filed Please be patient while we process the report");
+$(document).ready(function(){
+  flash_update("<%= j (render partial: 'layouts/jsflash') %> ");
+  $('#review-id-<%=@report.review_id%>').find('div#report-form-id').hide();
+});

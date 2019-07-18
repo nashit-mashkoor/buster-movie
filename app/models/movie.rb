@@ -13,7 +13,9 @@ class Movie < ApplicationRecord
   before_destroy   :purge_posters
 
   has_many :reviews, dependent: :destroy
-  
+ 
+  has_many :favourites, dependent: :destroy
+  has_many :rated_by, through: :favourites, source: :movie
 
   #Resize thumb nail
   def thumb_nail(wsize = 40, hsize = 40)

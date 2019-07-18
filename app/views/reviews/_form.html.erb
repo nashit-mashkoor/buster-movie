@@ -47,6 +47,12 @@
           </div>
         </div>
       <% end %> 
+      <script>
+        $(document).ready(function(){
+          $('#rating-form').raty('click', <%=review.rating%>);
+        });
+      </script>
     <% end %>   
   </div>
 </div> 
+

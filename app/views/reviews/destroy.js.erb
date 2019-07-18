@@ -1,4 +1,4 @@
 $(document).ready(function(){
   $('div#review-id-<%=(@review.id)%>').hide();
-  alert('Review Destroyed');
+  flash_update("<%= j (render partial: 'layouts/jsflash') %> ");
 });

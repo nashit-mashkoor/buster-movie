@@ -1,0 +1,54 @@
+
+<header class="ht-header">
+  <div class="container">
+    <%= render 'partials/navbar' %>
+    <%= render 'partials/searchbar' %>
+  </div>
+</header>
+<%= render partial: 'edit_picture' %>
+<div class="hero user-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hero-ct">
+          <h1><%= current_user.name %>'s profile</h1>
+          <ul class="breadcumb">
+            <li class="active"><a href="<%=home_movies_url%>">Home</a></li>
+            <li> <span class="ion-ios-arrow-right"></span>Profile</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-single userfav_list">
+  <div class="container">
+    <div class="row ipad-width2">
+      <div class="col-md-3 col-sm-12 col-xs-12">
+        <div class="user-information">
+          <div class="user-img">
+            <a href="#"><img src="<%=user_profile_pic(current_user, 120, 120 )%>" alt=""><br></a>
+            <a href="root_path" class=" redbtn btn signupLink">Change avatar</a>
+          </div>
+          <div class="user-fav">
+            <p>Account Details</p>
+            <ul>
+              <li class="active" id = "fav-btn"><%= link_to "Favourte Movies", load_favourites_user_path(current_user), remote: true%></li>
+              <li id = "rate-btn"><%= link_to "Rated Movies", load_rated_user_path(current_user), remote: true%></li>
+              <li><a href="<%=edit_user_registration_url%>">Edit Profile</a></li>
+            </ul>
+          </div>
+          <div class="user-fav">
+            <p>Others</p>
+            <ul>
+              <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="profile-content">
+        <%= render partial: 'user_favourites', locals: {favourites: @favourites}%>
+      </div>
+    </div>
+  </div>
+</div>

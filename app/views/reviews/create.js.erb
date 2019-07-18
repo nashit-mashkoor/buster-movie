@@ -1,14 +1,11 @@
 $(document).ready(function(){
+  flash_update("<%= j (render partial: 'layouts/jsflash') %> ");
   <% if !@review.errors.any? %>
     $("div#review-list").append(" <%= j(render partial: 'review', locals: {review: @review})%>");
     $('input#review_title').val("");
     $('input#review_comment').val("");
-    $('div#rating-form').val("");
-    
+    $('div#rating-form').val(""); 
     $('#rating-form').raty('click', 0);
-    alert("Review posted successfully");
-  <% else %>
-    alert("Review creation failed");
   <% end %>
 
 });

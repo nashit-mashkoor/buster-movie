@@ -1,69 +1,3 @@
-<!-- <div class = "row">
-  <div class = "col-md-4", align = "center">
-    <#%= image_tag @movie.posters[0] , class: 'poster-view' %>
-    <div class = "row", align = "center">
-    </div>
-  </div>
-
-</div>
-
-
-
-
-
-
-<%#= Styling %>
-
-
-<p>
-  <strong>Title:</strong>
-  <#%= image_tag @movie.thumb_nail(20) %>
-  <%= @movie.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= sanitize @movie.description.strip %>
-</p>
-
-<p>
-  <strong>Length:</strong>
-  <%= @movie.length %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @movie.rating %>
-</p>
-
-<p>
-  <strong>Year:</strong>
-  <%= @movie.year %>
-</p>
-
-<p>
-  <strong>Trailer:</strong>
-  <#%= render partial: 'trailer' , locals: {movie: @movie} %>
-</p>
-
-<p>
-  <strong>Posters:</strong><br />
-  <#% 0 .. @movie.posters.count do |poster| %>
-    <#%= render partial: 'poster', locals: {movie: @movie, poster: poster} %>
-  <#% end %>
-</p>
-
-<p>
-  <strong>Actors:</strong><br />
-  <#% @movie.actors.each do |actor| %>
-  <#%= render partial: 'actor_movie', locals: {movie: @movie, actor: actor} %>
-  <#% end %>
-</p>
-
-
-<#%= link_to 'Edit', edit_movie_path(@movie) %> |
-<#%= link_to 'Back', movies_path %> -->
-
 <header class="ht-header">
   <div class="container">
     <%= render 'partials/navbar' %>
@@ -109,16 +43,15 @@
         <div class="movie-single-ct main-content">
           <h2 class="bd-hd"><%= @movie.title %> <span>(<%= @movie.year.year %>)-<%=@movie.length%> mins</span></h2>
           <div class="social-btn">
-            <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
-            <div class="hover-bnt">
-              <a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>share</a>
-              <div class="hvr-item">
-                <a href="#" class="hvr-grow"><i class="ion-social-facebook"></i></a>
-                <a href="#" class="hvr-grow"><i class="ion-social-twitter"></i></a>
-                <a href="#" class="hvr-grow"><i class="ion-social-googleplus"></i></a>
-                <a href="#" class="hvr-grow"><i class="ion-social-youtube"></i></a>
+            <% unless @is_user_favourite %>
+              <div class = "col-md-4" id="user-favourite-btn">
+                <%= render partial: 'users/add_button', locals: {movie: @movie} %>
               </div>
-            </div>    
+            <% else %>
+              <div class = "col-md-4" id="user-favourite-btn">
+                <%= render partial: 'users/remove_button', locals: {movie: @movie} %>
+              </div>
+            <% end %>
           </div>
           <div class="movie-rate">
             <div class="rate">
@@ -193,9 +126,11 @@
                                 <div class= "col-md-2 col-md-offset-1">                   
                                   <button class="my-edit-btn movie-item-style-1 movie-item-style-2 "><%= link_to ' Edit ', edit_review_path(review) %></button>
                                 </div>
-                                <div class= "col-md-2 col-md-offset-1">  
-                                  <%= render partial: 'admin/reports/form', locals: { user: current_user.id, review: review.id} %>                
-                                </div>
+                                <% unless @user_reports.include?(review.id) %>
+                                  <div class= "col-md-2 col-md-offset-1" id="report-form-id">   
+                                    <%= render partial: 'admin/reports/form', locals: { user: current_user.id, review: review.id} %>                
+                                  </div>
+                                <% end %>
                                 <div class= "col-md-2 col-md-offset-1"> 
                                   <button class="my-delete-btn movie-item-style-1 movie-item-style-2 "> <%= link_to 'Delete', review_path(review), remote:true, method: :delete, data: { confirm: 'Are you sure?' } %></button>
                                 </div>
@@ -239,7 +174,7 @@
                               </div>
                               <p>
                                 <% if is_admin? %>
-                                  <button class="my-edit-btn movie-item-style-1 movie-item-style-2"><%= link_to ' Edit ', edit_actor_path(actor) %></button><button class="my-remove-btn movie-item-style-1 movie-item-style-2"> <%= link_to 'Remove', remove_actor_movie_path(@movie, actor), method: :delete %></button>
+                                  <button class="my-edit-btn movie-item-style-1 movie-item-style-2"><%= link_to ' Edit ', edit_actor_path(actor) %></button><button class="my-remove-btn movie-item-style-1 movie-item-style-2"> <%= link_to 'Remove', remove_actor_movie_path(@movie, actor), method: :delete%></button>
                                 <% end %>
                               </p>
                             </div>
@@ -291,93 +226,6 @@
                         <% end %>
                       </div>
                     </div>    
-                                       
-                    <div id="moviesrelated" class="tab">
-                      <div class="row">
-                        <h3>Related Movies To</h3>
-                        <h2>Skyfall: Quantum of Spectre</h2>
-                        <div class="topbar-filter">
-                      <p>Found <span>12 movies</span> in total</p>
-                      <label>Sort by:</label>
-                      <select>
-                        <option value="popularity">Popularity Descending</option>
-                        <option value="popularity">Popularity Ascending</option>
-                        <option value="rating">Rating Descending</option>
-                        <option value="rating">Rating Ascending</option>
-                        <option value="date">Release date Descending</option>
-                        <option value="date">Release date Ascending</option>
-                      </select>
-                    </div>
-                    <div class="movie-item-style-2">
-                      <img src="images/uploads/mv1.jpg" alt="">
-                      <div class="mv-item-infor">
-                        <h6><a href="#">oblivion <span>(2012)</span></a></h6>
-                        <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
-                        <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...</p>
-                        <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
-                        <p>Director: <a href="#">Joss Whedon</a></p>
-                        <p>Stars: <a href="#">Robert Downey Jr.,</a> <a href="#">Chris Evans,</a> <a href="#">  Chris Hemsworth</a></p>
-                      </div>
-                    </div>
-                    <div class="movie-item-style-2">
-                      <img src="images/uploads/mv2.jpg" alt="">
-                      <div class="mv-item-infor">
-                        <h6><a href="#">into the wild <span>(2014)</span></a></h6>
-                        <p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
-                        <p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat...</p>
-                        <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
-                        <p>Director: <a href="#">Anthony Russo,</a><a href="#">Joe Russo</a></p>
-                        <p>Stars: <a href="#">Chris Evans,</a> <a href="#">Samuel L. Jackson,</a> <a href="#">  Scarlett Johansson</a></p>
-                      </div>
-                    </div>
-                    <div class="movie-item-style-2">
-                      <img src="images/uploads/mv3.jpg" alt="">
-                      <div class="mv-item-infor">
-                        <h6><a href="#">blade runner  <span>(2015)</span></a></h6>
-                        <p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
-                        <p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
-                        <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
-                        <p>Director: <a href="#">Peyton Reed</a></p>
-                        <p>Stars: <a href="#">Paul Rudd,</a> <a href="#"> Michael Douglas</a></p>
-                      </div>
-                    </div>
-                    <div class="movie-item-style-2">
-                      <img src="images/uploads/mv4.jpg" alt="">
-                      <div class="mv-item-infor">
-                        <h6><a href="#">Mulholland pride<span> (2013)  </span></a></h6>
-                        <p class="rate"><i class="ion-android-star"></i><span>7.2</span> /10</p>
-                        <p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
-                        <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
-                        <p>Director: <a href="#">Shane Black</a></p>
-                        <p>Stars: <a href="#">Robert Downey Jr., </a> <a href="#">  Guy Pearce,</a><a href="#">Don Cheadle</a></p>
-                      </div>
-                    </div>
-                    <div class="movie-item-style-2">
-                      <img src="images/uploads/mv5.jpg" alt="">
-                      <div class="mv-item-infor">
-                        <h6><a href="#">skyfall: evil of boss<span> (2013)  </span></a></h6>
-                        <p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
-                        <p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
-                        <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
-                        <p>Director: <a href="#">Alan Taylor</a></p>
-                        <p>Stars: <a href="#">Chris Hemsworth,  </a> <a href="#">  Natalie Portman,</a><a href="#">Tom Hiddleston</a></p>
-                      </div>
-                    </div>
-                    <div class="topbar-filter">
-                      <label>Movies per page:</label>
-                      <select>
-                        <option value="range">5 Movies</option>
-                        <option value="saab">10 Movies</option>
-                      </select>
-                      <div class="pagination2">
-                        <span>Page 1 of 2:</span>
-                        <a class="active" href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#"><i class="ion-arrow-right-b"></i></a>
-                      </div>
-                    </div>
-                      </div>
-                    </div>
                 </div>
             </div>
           </div>

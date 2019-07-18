@@ -30,6 +30,8 @@ class MoviesController < ApplicationController
   def show
     @new_review =  Review.new
     @actors = @movie.actors
+    @is_user_favourite = Favourite.where( user_id: current_user.id, movie_id: @movie.id).exists?
+    @user_reports = Report.where(user_id: current_user.id).pluck(:review_id)
     @posters_per_page = 4
   end
 
@@ -107,6 +109,7 @@ class MoviesController < ApplicationController
     @movie = set_movie
     @movie.actors.delete(params[:actor_id])
     redirect_to movie_path(@movie), notice: 'Actor was successfully removed'
+    #return render js: "alert('Deleted Actor!')"
   end
 
   private

@@ -1,0 +1,8 @@
+$(document).ready(function(){
+   flash_update("<%= j (render partial: 'layouts/jsflash') %> ");
+   $('div#profile-content').empty();
+   $('div#profile-content').html("<%= j (render partial: 'user_rated_movies', locals: {total_rated: @total_rated}) %> ");
+   $('li#rate-btn').attr('class', 'active');
+   $('li#fav-btn').attr('class', '');
+
+});

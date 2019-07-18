@@ -1,14 +1,16 @@
 <div class="sidebar">
   <div class="searh-form">
-    <h4 class="sb-title" align="center"><%= current_user.name %></h4>
+    <h2 class="sb-title" align="center"><%=current_user.name %></h2>
     <%= render "devise/shared/error_messages", resource: resource %>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class:'form-style-1', method: :put }) do |f| %>
       <div class="row">
         <div class = "row">
            <div class="col-md-5 col-md-offset-4 form-it">
             <%= f.label :profile_pic%>
-            <%= image_tag user_profile_pic(resource,400,400), class: 'img-circle' %>
-          </div>
+            <%= link_to user_path(current_user) do %>
+              <%= image_tag user_profile_pic(resource,400,400), class: 'img-circle' %>
+            <% end %>
+          </div>S
         </div>
         <div class = "row">
           <div class="col-md-5 col-md-offset-4 form-it">
@@ -16,24 +18,6 @@
             <%= f.text_field :name, autofocus: true, autocomplete: "name"  %>
           </div>
         </div>
-        <div class = "row">
-          <div class="col-md-5 col-md-offset-4 form-it">
-            <%= f.label :profile_pic, value:'Select Picture' %>
-            <%= f.file_field :profile_pic, autocomplete: "profile_pic"  %>
-          </div>
-        </div>
-        <% if @user.profile_pic.attached? %>
-          <div class = "row">
-            <div class="col-md-5 col-md-offset-4 form-it">
-              <%= f.check_box :remove_profile_pic %>
-              <div class ="row">
-                <div class="col-md-5">
-                  <%= f.label :remove_profile_pic %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
         <div class = "row">
           <div class="col-md-5 col-md-offset-4 form-it">
             <%= f.label :email %>
@@ -50,11 +34,10 @@
         <div class = "row">
           <div class="col-md-5 col-md-offset-4 form-it">
             <%= f.label :password %><br/> <i>(leave blank if you don't want to change it)</i>
-            <%= f.password_field :password, autocomplete: "new-password" %>
             <% if @minimum_password_length %>
-              <br />
               <em><%= @minimum_password_length %> characters minimum</em>
-            <% end %>
+             <% end %>
+            <%= f.password_field :password, autocomplete: "new-password" %>
           </div>
         </div>
         <div class = "row">
@@ -65,7 +48,7 @@
         </div>
         <div class = "row">
           <div class="col-md-5 col-md-offset-4 form-it">
-            <%= f.label :current_password %> <br/><i>(we need your current password to confirm your changes)</i>
+            <%= f.label :current_password %><i>(we need your current password to confirm your changes)</i>
             <%= f.password_field :current_password, autocomplete: "current-password" %>
           </div>
         </div>      

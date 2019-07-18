@@ -13,7 +13,8 @@ module Admin
       @report = Report.new ({user_id: report_params[:user_id], review_id: report_params[:review_id]})
       respond_to do |format|
         if @report.save
-          format.js {}
+          flash.now[:notice] = "Report has been filed"
+          format.js
         else
           format.html { redirect_to request.referer, alert: "Report creation failed" }
         end
@@ -24,9 +25,9 @@ module Admin
     def destroy
       @report.destroy
       respond_to do |format|
-        format.html { redirect_to admin_reports_url, notice: 'Report was successfully destroyed.'}
+        format.html { redirect_to admin_reports_url, notice: 'Report was successfully destroyed. Review has been approved'}
         format.json { head :no_content }
-        format.js
+        format.js  
       end
     end
 
