@@ -6,9 +6,16 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def home
+    @per_page_count = 1
+    if params[:search].present?
+       @movies = Movie.search params[:search], operator: "or", page: params[:page], per_page: @per_page_count
+    else
+      @movies = Movie.all.page(params[:page]).per(@per_page_count)
+    end
 
-    @per_page_count = 5
-    @movies = Movie.page(params[:page]).per(@per_page_count)
+
+
+   
   
 
   end
