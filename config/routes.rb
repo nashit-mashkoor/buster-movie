@@ -28,6 +28,13 @@ Rails.application.routes.draw do
     resources :reports, only: [:index, :create, :destroy]  
     resources :users, only: [:index, :destroy, :edit, :update]
   end
+
+  namespace :api do
+    namespace :v1 do
+        post 'auth_user', to: 'authentication#authenticate_user'
+        resources :movies, only: [:index]
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'movies#home'
 

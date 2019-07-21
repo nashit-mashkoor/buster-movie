@@ -47,6 +47,7 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'tinymce-rails', '~> 5.0', '>= 5.0.9'
 gem 'searchkick'
+gem 'jwt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
