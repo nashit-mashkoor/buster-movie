@@ -23,7 +23,7 @@ gem 'mini_magick'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'tinymce-rails', '~> 5.0', '>= 5.0.9'
-gem 'searchkick'
+#gem 'searchkick'
 gem 'jwt'
 
 group :development, :test do
