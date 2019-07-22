@@ -1,7 +1,12 @@
 class Api::V1::MoviesController < Api::V1::ApiBaseController
-  before_action :authenticate_request!
+  #before_action :authenticate_request!
 
   def index
-    render json: { 'logged_in' => true }
+    if params[:search].present?
+       @movies = Movie.search params[:search], operator: "or"
+    else
+      @movies = Movie.all
+    end
+    render json: @movies
   end
 end
