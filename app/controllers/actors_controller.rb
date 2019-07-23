@@ -10,7 +10,9 @@ class ActorsController < ApplicationController
 
   # GET /actors/1
   # GET /actors/1.json
-  def show;end
+  def show
+   raise ActionController::RoutingError.new('Not Found')
+  end
 
   # GET /actors/new
   def new

@@ -1,16 +1,26 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<header class="ht-header">
+  <div class="container">
+    <%= render 'partials/navbar' %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+</header>
+<div class="hero common-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hero-ct">
+          <h1>Forgot your password ?</h1>
+          <ul class="breadcumb">
+            <li class="active"><a href="<%= home_movies_url %>">Home</a></li>
+            <li> <span class="ion-ios-arrow-right"></span> Reset Password</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
+<div class="page-single">
+  <div class="container">
+    <%= render partial: 'new'%>
+  </div>
+</div>
 
-<%= render "devise/shared/links" %>

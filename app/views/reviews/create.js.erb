@@ -6,6 +6,7 @@ $(document).ready(function(){
     $('input#review_comment').val("");
     $('div#rating-form').val(""); 
     $('#rating-form').raty('click', 0);
+    $('div.average-review-rating').data('score', "<%=calculate_average_review(@movie) %>");
     $('.average-review-rating').raty({
       readOnly: true,
       score: function() {
