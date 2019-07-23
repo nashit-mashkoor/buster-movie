@@ -6,6 +6,7 @@ class MoviesController < ApplicationController
   # GET /movies.json
   def home
     @per_page_count = 1
+    @total_movie = Movie.count
     if params[:search].present?
       @parameter = params[:search].downcase  
       @movies = Movie.where("lower(title) like ?", "%#{@parameter}%").page(params[:page]).per(@per_page_count)
