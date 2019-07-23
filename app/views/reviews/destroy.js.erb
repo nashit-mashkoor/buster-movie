@@ -1,4 +1,11 @@
 $(document).ready(function(){
   $('div#review-id-<%=(@review.id)%>').hide();
   flash_update("<%= j (render partial: 'layouts/jsflash') %> ");
+  $('div.average-review-rating').data('score', "<%=calculate_average_review(@review.movie) %>");
+  $('.average-review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
 });

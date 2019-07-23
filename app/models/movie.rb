@@ -1,7 +1,7 @@
 class Movie < ApplicationRecord
 
   #Confirm this 
-  searchkick searchable: [:title, :description], callbacks: :async
+  #searchkick searchable: [:title, :description], callbacks: :async
   validates_presence_of :title, :description
   validates_uniqueness_of :title
   validates_numericality_of :length

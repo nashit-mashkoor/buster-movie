@@ -1,9 +1,10 @@
 class Api::V1::MoviesController < Api::V1::ApiBaseController
-  #before_action :authenticate_request!
+  before_action :authenticate_request!
 
   def index
     if params[:search].present?
-       @movies = Movie.search params[:search], operator: "or"
+      @parameter = params[:search].downcase
+      @movies = Movie.where("lower(title) like ?", "%#{@parameter}%")
     else
       @movies = Movie.all
     end
