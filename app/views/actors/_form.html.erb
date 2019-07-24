@@ -8,7 +8,7 @@
         <h4 class="sb-title">New Actor</h4>
       <% end%>
       <%= render partial: 'partials/error', locals: {object: @actor} %>
-      <%= form_with(model: actor, local: true , html: {class: 'form-style-1', autocomplete: true} )  do |f| %>
+      <%= form_with(model: actor, local: true , html: {class: 'form-style-1', autocomplete: true}, validate: true )  do |f| %>
         <div class="row">
           <div class="col-md-10 col-md-offset-1 form-it">
             <% if actor.actor_pic.attached? %>
@@ -21,7 +21,7 @@
         <div class="row">
           <div class="col-md-10 col-md-offset-1 form-it">
             <%= f.label :actor_pic, placeholder: ''  %>
-            <%= f.file_field :actor_pic, autocomplete: true, value: actor.actor_pic %>
+            <%= f.file_field :actor_pic, autocomplete: true, value: actor.actor_pic, accept: 'image/png,image/jpeg' %>
           </div>
         </div>
         <div class="row">

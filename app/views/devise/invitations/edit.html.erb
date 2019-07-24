@@ -20,7 +20,7 @@
 </div>
 <div class="page-single">
   <div class="container">
-    <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: 'form-style-1' }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: 'form-style-1' }, validate: true) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
         <%= f.hidden_field :invitation_token, readonly: true %>
         <div class="row">

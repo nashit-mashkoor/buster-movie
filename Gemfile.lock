@@ -68,11 +68,16 @@ GEM
       xpath (~> 3.2)
     case_transform (0.2)
       activesupport
+    character_set (1.4.0)
     childprocess (1.0.1)
       rake (< 13.0)
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    client_side_validations (15.0.0)
+      jquery-rails (~> 4.3)
+      js_regex (~> 3.1)
+      rails (>= 5.0.0.1, < 6.1)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -112,6 +117,10 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
+    js_regex (3.4.0)
+      character_set (~> 1.4)
+      regexp_parser (~> 1.5)
+      regexp_property_values (~> 0.3)
     jsonapi-renderer (0.2.2)
     jwt (2.2.1)
     kaminari (1.1.1)
@@ -188,6 +197,7 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     regexp_parser (1.5.1)
+    regexp_property_values (0.3.5)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -255,6 +265,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   chromedriver-helper
+  client_side_validations
   coffee-rails (~> 4.2)
   devise
   devise_invitable

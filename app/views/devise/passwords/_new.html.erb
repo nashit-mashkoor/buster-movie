@@ -2,7 +2,7 @@
   <div class="searh-form">
     <h4 class="sb-title">Change your password</h4>
     <%= render partial: 'partials/error', locals: {object: @movie} %>
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name),html: {class: 'form-style-1', method: :post}) do |f| %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name),html: {class: 'form-style-1', method: :post}, validate: true) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="row">

@@ -14,6 +14,7 @@
 //= require activestorage
 //= require jquery
 //= require tinymce
+//= require rails.validations
 //= require_tree .
 //= require_self
 $(document).ready(function(){

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :set_rated, only: [:show, :load_rated]
   
 
-
+  def show; end
   def load_favourites
     respond_to do |format|
       format.js 

@@ -2,7 +2,7 @@
   <div class="searh-form">
     <h2 class="sb-title" align="center"><%=current_user.name %></h2>
     <%= render "devise/shared/error_messages", resource: resource %>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class:'form-style-1', method: :put }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class:'form-style-1', method: :put }, validate: true) do |f| %>
       <div class="row">
         <div class = "row">
            <div class="col-md-5 col-md-offset-4 form-it">

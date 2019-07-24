@@ -2,7 +2,7 @@
   <div class="searh-form">
     <h4 class="sb-title" align="center"><%= @user.name %></h4>
     <%= render "devise/shared/error_messages", resource: @user %>
-    <%= form_with( model: @user,url: admin_user_path(@user), local:true,  class:'form-style-1') do |f| %>
+    <%= form_with( model: @user,url: admin_user_path(@user), local:true,  class:'form-style-1', validate: true) do |f| %>
       <div class="row">
         <div class = "row">
            <div class="col-md-5 col-md-offset-4 form-it">
@@ -19,7 +19,7 @@
         <div class = "row">
           <div class="col-md-5 col-md-offset-4 form-it">
             <%= f.label :profile_pic, value:'Select Picture' %>
-            <%= f.file_field :profile_pic, autocomplete: "profile_pic"  %>
+            <%= f.file_field :profile_pic, autocomplete: "profile_pic", accept: 'image/png,image/jpeg'  %>
           </div>
         </div>
         <% if @user.profile_pic.attached? %>

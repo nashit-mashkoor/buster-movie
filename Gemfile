@@ -13,7 +13,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 #Additional gem
-gem 'active_model_serializers', '~> 0.10.10'  
+gem 'active_model_serializers', '~> 0.10.10' 
+gem 'client_side_validations'
 gem 'devise'
 gem 'devise_invitable'
 gem 'gravatar_image_tag'

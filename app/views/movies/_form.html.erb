@@ -2,7 +2,7 @@
   <div class="searh-form">
     <h4 class="sb-title">Create a new movie</h4>
     <%= render partial: 'partials/error', locals: {object: @movie} %>
-    <%= form_with(model: @movie,local: true, class: 'form-style-1') do |form| %>
+    <%= form_with(model: @movie,local: true, class: 'form-style-1', validate: true) do |form| %>
       <div class="row">
         <div class="col-md-8 col-md-offset-1 form-it">
            <%= form.label :title, placeholder: 'Movie Name' %>
@@ -31,19 +31,19 @@
        <div class="row">
         <div class="col-md-8 col-md-offset-3  form-it">
           <%= form.label :thumbnail %>
-          <%= form.file_field :thumbnail %>
+          <%= form.file_field :thumbnail, accept: 'image/png,image/jpeg' %>
         </div>
       </div>
       <div class="row">
         <div class="col-md-8 col-md-offset-3  form-it">
           <%= form.label :posters %>
-          <%= form.file_field :posters , multiple: true%>
+          <%= form.file_field :posters , multiple: true, accept: 'image/png,image/jpeg'%>
         </div>
       </div>
       <div class="row">
         <div class="col-md-8 col-md-offset-3  form-it">
           <%= form.label :trailer %>
-          <%= form.file_field :trailer %>
+          <%= form.file_field :trailer, accept: 'video/mp4, video/quicktime' %>
         </div>
       </div>
       <div class="row">
