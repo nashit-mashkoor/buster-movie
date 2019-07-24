@@ -34,8 +34,8 @@
             <option value="date">Release date Descending</option>
             <option value="date">Release date Ascending</option>
           </select>
-          <a href="celebritylist.html" class="list"><i class="ion-ios-list-outline "></i></a>
-          <a  href="celebritygrid01.html" class="grid"><i class="ion-grid active"></i></a>
+          <a href="#" class="list"><i class="ion-ios-list-outline "></i></a>
+          <a  href="#" class="grid"><i class="ion-grid active"></i></a>
         </div>
         <div class="celebrity-items">
           <% @users.each do |user| %>
@@ -46,7 +46,7 @@
               <% end %>
               <div class="ceb-infor">
                 <% if !user.nil? %>
-                  <h2 align="center"><a href="<%='edit_admin_user_url(user)'%>"><%= user.name %></a></h2>
+                  <h2 align="center"><a href="<%=edit_admin_user_url(user)%>"><%= user.name %></a></h2>
                 <% end%>
               </div>
               <br />

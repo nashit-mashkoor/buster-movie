@@ -1,7 +1,7 @@
 class Movie < ApplicationRecord
 
   #Confirm this 
-  searchkick searchable: [:title, :description], callbacks: :async
+  #searchkick searchable: [:title, :description], callbacks: :async
   validates_presence_of :title, :description
   validates_uniqueness_of :title
   validates_numericality_of :length
@@ -10,7 +10,6 @@ class Movie < ApplicationRecord
   has_one_attached :trailer
   has_many_attached :posters
   has_and_belongs_to_many :actors
-
   after_validation :check_movie_attachments, only: [:create]
   before_destroy   :purge_posters
 

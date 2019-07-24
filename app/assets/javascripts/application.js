@@ -27,7 +27,6 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('.average-review-rating').raty({
     readOnly: true,
-    path: '/assets/',
     score: function() {
       return $(this).attr('data-score')
     }
@@ -35,7 +34,6 @@ $(document).ready(function(){
 
   $('.review-rating').raty({
     readOnly: true,
-    path: '/assets/',
     score: function() {
       return $(this).attr('data-score')
     }
@@ -43,7 +41,6 @@ $(document).ready(function(){
 
 
   $('#rating-form').raty({
-    path: '/assets/',
     scoreName: 'review[rating]'
   });
 });

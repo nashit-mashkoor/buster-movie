@@ -2,22 +2,17 @@ class MoviesController < ApplicationController
   include MoviesHelper
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
   before_action :get_reviews, only: [:show]
-
   # GET /movies
   # GET /movies.json
   def home
     @per_page_count = 1
+    @total_movie = Movie.count
     if params[:search].present?
-       @movies = Movie.search params[:search], operator: "or", page: params[:page], per_page: @per_page_count
+      @parameter = params[:search].downcase  
+      @movies = Movie.where("lower(title) like ?", "%#{@parameter}%").page(params[:page]).per(@per_page_count)
     else
       @movies = Movie.all.page(params[:page]).per(@per_page_count)
     end
-
-
-
-   
-  
-
   end
   # GET /movies
   # GET /movies.json
@@ -93,7 +88,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie.destroy
     respond_to do |format|
-      format.html { redirect_to movies_url, notice: 'Movie was successfully destroyed.'}
+      format.html { redirect_to home_movies_url, notice: 'Movie was successfully destroyed.'}
       format.json { head :no_content }
     end
   end
