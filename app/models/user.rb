@@ -4,12 +4,13 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :invitable
+         :recoverable, :rememberable, :validatable, :invitable, :confirmable
   validates :name, presence: true
   validate :user_attachment_format
   has_one_attached :profile_pic
   after_save :purge_profile_pic, if: :remove_profile_picture?
   after_validation :check_user_attachments
+  after_invitation_accepted :confirm_email!
 
   has_many :reviews, dependent: :destroy
   has_many :reports, dependent: :destroy
@@ -17,6 +18,9 @@ class User < ApplicationRecord
   has_many :favourites, dependent: :destroy
   has_many :favourite_movies, through: :favourites, source: :movie
  
+  def confirm_email!
+    self.update confirmed_at: DateTime.now
+  end
   #Delete profile picture
   def purge_profile_pic
     profile_pic.purge_later
