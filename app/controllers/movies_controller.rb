@@ -46,8 +46,6 @@ class MoviesController < ApplicationController
   # POST /movies
   # POST /movies.json
   def create
-
-
     @movie = Movie.new movie_params
     respond_to do |format|
       if @movie.save
@@ -134,7 +132,7 @@ class MoviesController < ApplicationController
 
   def get_reviews 
     @reviews_per_page = 10
-    @reviews = Review.page(params[:page]).per(@reviews_per_page).where(movie_id: @movie.id)
+    @reviews = Review.order(updated_at: :desc).page(params[:page]).per(@reviews_per_page).where(movie_id: @movie.id)
   
 
   end

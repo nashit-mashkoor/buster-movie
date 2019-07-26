@@ -47,4 +47,8 @@ module ApplicationHelper
   def is_editable?(review)
     return (is_admin? || (current_user == review.user))
   end
+
+  def is_reviewable?(user_id, movie_id)
+    !Review.where(user_id: user_id, movie_id: movie_id).exists?
+  end
 end

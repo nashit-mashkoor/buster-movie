@@ -14,8 +14,7 @@
                   <div class="title-in">
                     <h1><a href="#"><%=movie.title%> <span><%= movie.year.year%></span></a></h1>
                   <div class="social-btn">
-                    <a href="<%= movie.thumb_nail(400,400)%>" class="parent-btn"><i class="ion-play"></i> Download Trailer</a>
-                    <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
+                    <a href="<%= url_for(movie.thumbnail)%>" class="parent-btn"><i class="ion-play"></i> Download Poster</a>
                     <div class="hover-bnt">
                       <a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>share</a>
                       <div class="hvr-item">
@@ -41,7 +40,7 @@
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="mv-img-2">
-                    <a href="#"><%= image_tag movie.thumb_nail(270, 414) %></a>
+                    <a href="<%= movie_path(movie) %>"><%= image_tag movie.thumb_nail(270, 414) %></a>
                   </div>
                 </div>
               </div>  

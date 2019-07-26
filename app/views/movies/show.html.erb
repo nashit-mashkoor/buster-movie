@@ -22,7 +22,9 @@
     <div class="row ipad-width2">
       <div class="col-md-4 col-sm-12 col-xs-12">
         <div class="movie-img sticky-sb">
-          <%= image_tag (@movie.thumb_nail(330,505.67)) %>
+          <%= link_to url_for(@movie.thumbnail), target: :_blank do %>
+            <%= image_tag (@movie.thumb_nail(330,505.67)) %>
+          <% end %>
           <div class="movie-btn"> 
             <div class="btn-transform transform-vertical red">
               <div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Download Trailer</a></div>
@@ -144,8 +146,12 @@
                           </div>
                         <% end %> 
                        </div>
-                        <br/ >                   
-                        <%= render partial: 'reviews/form', locals: {review: @new_review, movie: @movie, show_page: true} %>
+                        <br/ >
+                          <div id="movie-review-form">   
+                            <% if is_reviewable? current_user.id, @movie.id %>               
+                              <%= render partial: 'reviews/form', locals: {review: @new_review, movie: @movie, show_page: true} %>
+                            <% end %>
+                          </div>
                         <div class="topbar-filter">
                           <label>Reviews per page:</label>
                           <select>
@@ -174,7 +180,9 @@
                           <% @actors.each do |actor| %>                 
                             <div class="cast-it">
                               <div class="cast-left">
-                                <%= image_tag(actor.resized_actor_pic(200,200)) %>
+                                <%= link_to url_for(actor.actor_pic), target: :_blank do %>
+                                  <%= image_tag(actor.resized_actor_pic(200,200)) %>
+                                 <% end %>
                                 <%if is_admin? %>
                                     <h3><%= link_to actor.name, edit_actor_path(actor) %></h3>
                                 <% else %>
@@ -236,8 +244,10 @@
                         <% end %>
                         <%@movie.posters.each do |poster| %>
                           <div class ="row" >
-                            <div class="mvsingle-item col-md-12" >
-                              <%= image_tag url_for(@movie.movie_poster(poster, 850,400))%>  
+                            <div class="mvsingle-item col-md-10 col-md-offset-2" >
+                              <%= link_to url_for(poster), target: :_blank do %>
+                                <%= image_tag url_for(@movie.movie_poster(poster, 400,600))%>
+                              <% end %>  
                             </div>
                           </div>
                           <% if is_admin? && @movie.posters.attached? %> 
