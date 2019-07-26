@@ -41,4 +41,10 @@ module ApplicationHelper
   def authenticate_admin!
     redirect_to(root_path, alert: 'You are not a admin') unless  is_admin?
   end
+  def is_reportable?(review)
+    return (!is_admin? && !@user_reports.include?(review.id) && review.user != current_user)
+  end
+  def is_editable?(review)
+    return (is_admin? || (current_user == review.user))
+  end
 end

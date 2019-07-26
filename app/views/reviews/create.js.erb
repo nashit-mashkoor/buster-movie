@@ -7,6 +7,7 @@ $(document).ready(function(){
     $('div#rating-form').val(""); 
     $('#rating-form').raty('click', 0);
     $('div.average-review-rating').data('score', "<%=calculate_average_review(@movie) %>");
+    $('#number-average-review-rating').text("<%=calculate_average_review(@movie) %>");
     $('.average-review-rating').raty({
       readOnly: true,
       score: function() {
@@ -22,6 +23,9 @@ $(document).ready(function(){
     $('#rating-form').raty({
       scoreName: 'review[rating]'
     });
+    $('#review_body').val('');
+    $("b#movie-review-count-1").text(parseInt($("b#movie-review-count-1").text()) + 1);
+    $("b#movie-review-count-2").text(parseInt($("b#movie-review-count-2").text()) + 1);
   <% end %>
 });
 

@@ -4,7 +4,7 @@ module Admin
     before_action :set_report, only: [:destroy]
     before_action :authenticate_admin!, except: [:create]
     def index
-      @reports_per_page = 5
+      @reports_per_page = 10
       @reports = Report.includes(:review).page(params[:page]).per(@reports_per_page)
 
     end

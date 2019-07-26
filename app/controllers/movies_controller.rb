@@ -1,11 +1,12 @@
 class MoviesController < ApplicationController
   include MoviesHelper
-  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_movie, only: [:show, :update, :destroy]
   before_action :get_reviews, only: [:show]
+  skip_before_action :authenticate_user!, only: [:index]
   # GET /movies
   # GET /movies.json
   def home
-    @per_page_count = 1
+    @per_page_count = 10
     @total_movie = Movie.count
     if params[:search].present?
       @parameter = params[:search].downcase  
@@ -34,16 +35,13 @@ class MoviesController < ApplicationController
     @actors = @movie.actors
     @is_user_favourite = Favourite.where( user_id: current_user.id, movie_id: @movie.id).exists?
     @user_reports = Report.where(user_id: current_user.id).pluck(:review_id)
-    @posters_per_page = 4
+    @posters_per_page = 10
   end
 
   # GET /movies/new
   def new
     @movie = Movie.new
   end
-
-  # GET /movies/1/edit
-  def edit; end
 
   # POST /movies
   # POST /movies.json
@@ -99,6 +97,15 @@ class MoviesController < ApplicationController
     @image.purge
     redirect_to movie_path(params[:id]), notice: 'Poster was successfully removed'
   end
+  #DELETE /movies/1/delete_poster/1
+  def delete_all_posters
+    @movie = set_movie
+    @movie.posters.each do |poster| 
+      poster.purge
+    end
+
+    redirect_to movie_path(params[:id]), notice: 'Posters were successfully removed'
+  end
 
   #DELETE /movies/1/delete_trailer
   def delete_trailer
@@ -126,7 +133,7 @@ class MoviesController < ApplicationController
   end
 
   def get_reviews 
-    @reviews_per_page = 4
+    @reviews_per_page = 10
     @reviews = Review.page(params[:page]).per(@reviews_per_page).where(movie_id: @movie.id)
   
 

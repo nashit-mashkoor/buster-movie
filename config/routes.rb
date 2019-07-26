@@ -1,17 +1,15 @@
 Rails.application.routes.draw do
-  resources :actors
-  resources :movies do
+  resources :actors, except: [:show]
+  resources :movies, except: [:edit] do
     resources :reviews, only: [:new, :create]
     member do
       delete 'delete_poster/:poster_id', to: 'movies#delete_poster', as: 'delete_poster'
+      delete 'delete_all_posters', to: 'movies#delete_all_posters', as: 'delete_all_posters'
       delete 'delete_trailer', to: 'movies#delete_trailer', as: 'delete_trailer'
       delete 'remove_actor/:actor_id', to: 'movies#remove_actor', as: 'remove_actor'
     end
-    collection do
-      get 'home', to: 'movies#home'
-      get 'land', to: 'movies#land'
-    end
   end 
+  get '/home', to: 'movies#home', as: 'home_movies'
   #Temporarily
   resources :reviews, only: [:show, :index, :edit, :update, :destroy]  
   devise_for :users

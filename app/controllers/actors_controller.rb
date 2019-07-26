@@ -1,17 +1,14 @@
 class ActorsController < ApplicationController
+  include ApplicationHelper
+  before_action :authenticate_admin!
   before_action :set_actor, only: [:show, :edit, :update, :destroy]
 
   # GET /actors
   # GET /actors.json
   def index
-    @actor_per_page = 4
+    @actor_per_page = 10
     @actors = Actor.page(params[:page]).per(@actor_per_page)
   end
-
-  # GET /actors/1
-  # GET /actors/1.json
-  def show; end
-
   # GET /actors/new
   def new
     @actor = Actor.new
@@ -28,11 +25,9 @@ class ActorsController < ApplicationController
 
     respond_to do |format|
       if @actor.save
-        format.html { redirect_to @actor, notice: 'Actor was successfully created.' }
-        format.json { render :show, status: :created, location: @actor }
+        format.html { redirect_to edit_actor_path(@actor), notice: 'Actor was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @actor.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,7 +38,6 @@ class ActorsController < ApplicationController
     respond_to do |format|
       if @actor.update(actor_params)
         format.html { redirect_to @actor, notice: 'Actor was successfully updated.' }
-        format.json { render :show, status: :ok, location: @actor }
       else
         format.html { render :edit }
         format.json { render json: @actor.errors, status: :unprocessable_entity }

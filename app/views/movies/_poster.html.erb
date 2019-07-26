@@ -1,3 +1,6 @@
 
 <%= image_tag movie.movie_poster(poster, 400,400) %>
-<%= link_to 'Remove', delete_poster_movie_path(movie,poster), method: :delete , data: { confirm: 'Are you sure?' }  %>
+<% if is_admin? && movie.posters.attached? %>
+  <%= link_to 'Remove', delete_poster_movie_path(movie,poster), method: :delete , data: { confirm: 'Are you sure?' }  %>
+<% end %>
+  

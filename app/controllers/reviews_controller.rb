@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
 
   def index
-    @reviews_per_page = 25
+    @reviews_per_page = 10
     @reviews = Review.page(params[:page]).per(@reviews_per_page)
     @review = Review.first
   end
@@ -57,7 +57,7 @@ class ReviewsController < ApplicationController
   private
 
     def review_params
-      params.require(:review).permit(:title,:rating, :comment)
+      params.require(:review).permit(:title, :rating, :comment)
     end
 
     def find_movie

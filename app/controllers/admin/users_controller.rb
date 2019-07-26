@@ -4,7 +4,7 @@ module Admin
     before_action :set_user, only: [:edit, :destroy, :update]
     before_action :authenticate_admin!
     def index
-      @user_per_page = 25
+      @user_per_page = 10
       @users = User.page(params[:page]).per(@user_per_page)
     end
 

@@ -17,7 +17,7 @@
           </div>
           <div class="col-md-10 col-md-offset-1 form-it">
             <%= f.label :comment %>
-            <%= f.text_field :comment, placeholder: 'Comment Details', autocomplete: true, value: review.comment %>
+            <%= f.text_area :comment, placeholder: 'Comment Details', autocomplete: true, value: review.comment,id: 'review_body' %>
           </div>
           <div class="col-md-5 col-md-offset-4 form-it">                                
             <%= f.button :submit , class: 'my-submit-btn movie-item-style-1 movie-item-style-2'%>
@@ -40,7 +40,7 @@
           </div>
           <div class="col-md-10 col-md-offset-1 form-it">
             <%= f.label :comment %>
-            <%= f.text_field :comment, placeholder: 'Comment Details', autocomplete: true, value: review.comment %>
+            <%= f.text_area :comment, placeholder: 'Comment Details', autocomplete: true, value: review.comment, id: 'review_body' %>
           </div>
           <div class="col-md-5 col-md-offset-4 form-it">                                
             <%= f.button :submit , class: 'my-submit-btn movie-item-style-1 movie-item-style-2'%>

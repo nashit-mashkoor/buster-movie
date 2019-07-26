@@ -56,8 +56,8 @@
           <div class="movie-rate">
             <div class="rate">
               <i class="ion-android-star"></i>
-              <p><span><%= calculate_average_review(@movie) %></span> /5<br>
-                <span class="rv"><%= @movie.reviews.count %> Reviews</span>
+              <p><span id="number-average-review-rating"><%= calculate_average_review(@movie) %></span> /5<br>
+                <span class="rv"><b id="movie-review-count-1"><%= @movie.reviews.count %></b> Reviews</span>
               </p>
             </div>
             <div class="rate-star">
@@ -79,7 +79,7 @@
                       <div class="row">
                         <% if !is_admin?%>
                           <div class="col-md-8 col-sm-12 col-xs-12">
-                            <p><%= sanitize @movie.description.strip %></p>
+                            <h1><%= sanitize @movie.description.strip %></h1>
                           </div>
                         <% else %>
                         <%= render partial: 'description_edit' %>
@@ -95,7 +95,7 @@
                             </div>
                           </div>
                           <div class="topbar-filter">
-                            <p>Found <span><%= @movie.reviews.count%> reviews</span> in total</p>
+                            <p>Found <span> <b id= "movie-review-count-2"><%= @movie.reviews.count%></b> reviews</span> in total</p>
                             <label>Filter by:</label>
                             <select>
                               <option value="popularity">Popularity Descending</option>
@@ -114,28 +114,33 @@
                               <div>
                                 <h3><%=review.title %></h3>
                                 <p class="time">
-                                  <%= review.created_at.to_date %> by <a href="edit_user_registration_url(review.user)"> <%= review.user.name%></a>
+                                  <%= review.created_at.to_date %> by 
+                                  <%if is_admin? %>
+                                    <a href="<%= edit_admin_user_path(review.user.id)%>"> <%= review.user.name%></a>
+                                  <% else %>
+                                    <%= review.user.name%>  
+                                  <% end %>
                                 </p>
                               </div>
                             </div>
                             <p> <div class="no-star"><div class="review-rating" data-score="<%=review.rating %>"></div></div> <p>
                             <p><%=review.comment%></p>
-                            <% if (is_admin? || (current_user == review.user)) %>    
-                              <br />  
-                              <div class = "row" align="center">
-                                <div class= "col-md-2 col-md-offset-1">                   
-                                  <button class="my-edit-btn movie-item-style-1 movie-item-style-2 "><%= link_to ' Edit ', edit_review_path(review) %></button>
-                                </div>
-                                <% unless @user_reports.include?(review.id) %>
-                                  <div class= "col-md-2 col-md-offset-1" id="report-form-id">   
-                                    <%= render partial: 'admin/reports/form', locals: { user: current_user.id, review: review.id} %>                
+                            <div class = "row" align="center">
+                              <% if is_editable? review %>    
+                                <br />  
+                                  <div class= "col-md-2 col-md-offset-1">                   
+                                    <button class="my-edit-btn movie-item-style-1 movie-item-style-2 "><%= link_to ' Edit ', edit_review_path(review) %></button>
                                   </div>
-                                <% end %>
-                                <div class= "col-md-2 col-md-offset-1"> 
-                                  <button class="my-delete-btn movie-item-style-1 movie-item-style-2 "> <%= link_to 'Delete', review_path(review), remote:true, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                                  <div class= "col-md-2 col-md-offset-1"> 
+                                    <button class="my-delete-btn movie-item-style-1 movie-item-style-2 "> <%= link_to 'Delete', review_path(review), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                                  </div>
+                              <% end %>
+                              <% if is_reportable? review %>
+                                <div class= "col-md-2 col-md-offset-1" id="report-form-id">   
+                                  <%= render partial: 'admin/reports/form', locals: { user: current_user.id, review: review.id} %>                
                                 </div>
-                              </div>
-                            <% end %>
+                              <% end %>
+                            </div>
                           </div>
                         <% end %> 
                        </div>
@@ -170,7 +175,11 @@
                             <div class="cast-it">
                               <div class="cast-left">
                                 <%= image_tag(actor.resized_actor_pic(200,200)) %>
-                                <%= link_to actor.name, actor_path(actor) %> 
+                                <%if is_admin? %>
+                                    <h3><%= link_to actor.name, edit_actor_path(actor) %></h3>
+                                <% else %>
+                                    <h3><%= actor.name%></h3>  
+                                <% end %> 
                               </div>
                               <p>
                                 <% if is_admin? %>
@@ -198,31 +207,48 @@
                         <div class="title-hd-sm">
                             <h4> Trailer</h4>
                         </div>
-                        <div class="mvsingle-item media-item">
-                          <% if @movie.trailer.attached?%>
-                            <div>
-                              <%= video_tag(url_for(@movie.trailer), controls: "")%>
-                            </div>
-                          <% end %>
+                        <div class="row" >
+                          <div class="mvsingle-item media-item col-md-11 col-md-offset-1 ">
+                            <% if @movie.trailer.attached?%>
+                              <div>
+                                <%= video_tag(url_for(@movie.trailer), controls: "")%>
+                              </div>
+                            <% end %>
+                          </div>
                         </div>
                         <% if is_admin? && @movie.trailer.attached? %>  
                           <br />
-                          <div align="center">
-                            <button class="my-delete-btn movie-item-style-1 movie-item-style-2"> <%= link_to 'Delete', delete_trailer_movie_path, method: :delete %></button>
+                          <div class="row" >
+                            <div class="mvsingle-item media-item col-md-8 col-md-offset-4 ">
+                              <button class="my-delete-btn movie-item-style-1 movie-item-style-2"> <%= link_to 'Delete', delete_trailer_movie_path, method: :delete %></button>
+                            </div>
                           </div>
                         <% end %>
                         <div class="title-hd-sm">
                           <h4>Posters <span> <%= @movie.posters.size %></span></h4>
                         </div>
-                        <%@movie.posters.each do |poster| %>
-                          <div class="mvsingle-item col-md-12" >
-                            <%= image_tag url_for(@movie.movie_poster(poster, 850,400))%>  
-                          </div>
-                          <div class="row">
-                            <div class="col-md-8 col-md-offset-4">
-                              <button class="my-delete-btn movie-item-style-1 movie-item-style-2"> <%= link_to 'Delete', delete_poster_movie_path(@movie,poster), method: :delete %></button>
+                        <% if is_admin? && @movie.posters.attached? %>
+                          <div class ="row" >
+                            <div class="mvsingle-item col-md-8 col-md-offset-4" >
+                               <button class="my-delete-btn movie-item-style-1 movie-item-style-2"> <%= link_to 'Delete All', delete_all_posters_movie_path(@movie), method: :delete %></button>
                             </div>
                           </div>
+                        <% end %>
+                        <%@movie.posters.each do |poster| %>
+                          <div class ="row" >
+                            <div class="mvsingle-item col-md-12" >
+                              <%= image_tag url_for(@movie.movie_poster(poster, 850,400))%>  
+                            </div>
+                          </div>
+                          <% if is_admin? && @movie.posters.attached? %> 
+                            <div class="row">
+                              <div class="col-md-8 col-md-offset-4">
+                                <button class="my-delete-btn movie-item-style-1 movie-item-style-2"> <%= link_to 'Delete', delete_poster_movie_path(@movie,poster), method: :delete %></button>
+                              </div>
+                            </div>
+                          <% else %>
+                            <br />  
+                          <% end %>
                         <% end %>
                       </div>
                     </div>    

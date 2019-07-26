@@ -5,9 +5,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   #before_action :validate_resource, if: :devise_controller?, only: [:update]
 
-  def not_found
-    raise ActionController::RoutingError.new('Not Found')
-  end
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit :sign_up, keys: [:name, :email, :password, :profile_pic]
     devise_parameter_sanitizer.permit :account_update, keys: [:name, :email, :profile_pic, :password, :current_password,:remove_profile_pic]
