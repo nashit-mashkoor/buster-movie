@@ -39,7 +39,7 @@ module ApplicationHelper
     return (!current_user.nil? && current_user.super_user?)
   end
   def authenticate_admin!
-    redirect_to(root_path, alert: 'You are not a admin') unless  is_admin?
+    redirect_to(home_movies_path, alert: 'You are not a admin') unless  is_admin?
   end
   def is_reportable?(review)
     return (!is_admin? && !@user_reports.include?(review.id) && review.user != current_user)
