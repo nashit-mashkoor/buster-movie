@@ -37,7 +37,7 @@ class ActorsController < ApplicationController
   def update
     respond_to do |format|
       if @actor.update(actor_params)
-        format.html { redirect_to @actor, notice: 'Actor was successfully updated.' }
+        format.html { redirect_to edit_actor_path(@actor), notice: 'Actor was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @actor.errors, status: :unprocessable_entity }
