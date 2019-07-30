@@ -1,14 +1,15 @@
 class ReviewsController < ApplicationController
-  before_action :find_movie, except: [:index, :show, :edit, :update, :destroy]
-  before_action :find_review, only:  [:edit, :update, :destroy, :show]
+  include ApplicationHelper
+  before_action :find_movie, except: [:index, :edit, :update, :destroy]
+  before_action :find_review, only:  [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit]
+
 
   def index
     @reviews_per_page = 10
     @reviews = Review.page(params[:page]).per(@reviews_per_page)
     @review = Review.first
   end
-  def show; end
   def new
     @review = Review.new
 
@@ -32,7 +33,12 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-     session[:return_to] = request.referer
+    if is_editable?(@review)
+      session[:return_to] = request.referer
+   else
+      flash[:alert] = "You can not  edit this review"
+      redirect_to root_path
+   end
   end
 
   def update

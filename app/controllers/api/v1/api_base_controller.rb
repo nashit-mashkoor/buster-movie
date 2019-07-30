@@ -3,7 +3,6 @@ class Api::V1::ApiBaseController < ApplicationController
   skip_before_action :authenticate_user!
   protected
   def authenticate_request!
-    byebug
     unless user_id_in_token?
       render json: { errors: ['Not Authenticated'] }, status: :unauthorized
       return
@@ -25,6 +24,6 @@ class Api::V1::ApiBaseController < ApplicationController
   end
 
   def user_id_in_token?
-    http_token && auth_token && auth_token[:user_id].to_i
+    http_token && auth_token && auth_token[:user_id].to_i && auth_token[:created_at].present? && (Time.now - auth_token[:created_at].to_datetime).round <= 300
   end
 end

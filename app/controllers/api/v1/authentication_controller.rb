@@ -16,7 +16,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiBaseController
   def payload(user)
     return nil unless user and user.id
     {
-      auth_token: JsonWebToken.encode({user_id: user.id}),
+      auth_token: JsonWebToken.encode({user_id: user.id, created_at: Time.now}),
       user: {id: user.id, email: user.email}
     }
   end

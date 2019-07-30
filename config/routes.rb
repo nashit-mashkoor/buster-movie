@@ -10,8 +10,7 @@ Rails.application.routes.draw do
     end
   end 
   get '/home', to: 'movies#home', as: 'home_movies'
-  #Temporarily
-  resources :reviews, only: [:show, :index, :edit, :update, :destroy]  
+  resources :reviews, only: [:index, :edit, :update, :destroy]  
   devise_for :users
   resources :users, only: [:show]  do
     member do
@@ -26,14 +25,12 @@ Rails.application.routes.draw do
     resources :reports, only: [:index, :create, :destroy]  
     resources :users, only: [:index, :destroy, :edit, :update]
   end
-
   namespace :api do
     namespace :v1 do
         post 'auth_user', to: 'authentication#authenticate_user'
         resources :movies, only: [:index]
     end
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'movies#index'
   get '/404', to: 'errors#not_found'
   get '/500', to: 'errors#internal_error'
