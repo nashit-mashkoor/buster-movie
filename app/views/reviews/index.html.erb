@@ -43,7 +43,7 @@
                 <div class="author-infor">
                   <div class="flex-it2" >
                     <h6><span class="time">Written By:&nbsp</span><a href="<%=edit_user_registration_url(review.user)%>"><%=review.user.name %></a>
-                      <br/ > <span class="time">Movie:&nbsp</span> <a href="<%=movie_url(review.movie)%>"><%=review.movie.title%></a>
+                      <br/> <span class="time">Movie:&nbsp</span> <a href="<%=movie_url(review.movie)%>"><%=review.movie.title%></a>
                     </h6>
                   </div>
                   <div class="flex-it2">
@@ -69,14 +69,6 @@
           </select>
           <div class="pagination2">
           <%= paginate @reviews %>
-         <!--    <span>Page 1 of 2:</span>
-            <a class="active" href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">...</a>
-            <a href="#">78</a>
-            <a href="#">79</a>
-            <a href="#"><i class="ion-arrow-right-b"></i></a> -->
           </div>
         </div>
       </div>

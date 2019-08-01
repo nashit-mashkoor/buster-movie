@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module Admin
   class UsersController < ApplicationController
     include ApplicationHelper
-    before_action :set_user, only: [:edit, :destroy, :update]
+    before_action :set_user, only: %i[edit destroy update]
     before_action :authenticate_admin!
+
     def index
       @user_per_page = 10
       @users = User.page(params[:page]).per(@user_per_page)
@@ -15,14 +18,15 @@ module Admin
         format.json { head :no_content }
         end
       else
-        espond_to do |format|
+        respond_to do |format|
           format.html { redirect_to admin_users_path, alert: 'User was not destroyed.'}
           format.json { head :no_content }
         end
       end
     end
-    def edit;end
-    
+
+    def edit; end
+
     def update
       respond_to do |format|
         if @user.update(user_params)
@@ -36,6 +40,7 @@ module Admin
     end
 
     private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
@@ -47,4 +52,4 @@ module Admin
     end
 
   end
-end 
+end

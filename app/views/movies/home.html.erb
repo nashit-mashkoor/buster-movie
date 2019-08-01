@@ -51,7 +51,7 @@
                 </div>         -->
           <% @movies.each do |movie| %> 
             <div class="movie-item-style-2 movie-item-style-1">
-              <%=image_tag (movie.thumb_nail(170,261)) ,alt: ''%> 
+              <%=image_tag(movie.thumb_nail(170,261)) %>
               <div class="hvr-inner">
                       <a  href="<%= movie_url(movie)%>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
                     </div>
@@ -60,7 +60,7 @@
                 <p class="rate"><i class="ion-android-star"></i><span><%= calculate_average_review(movie) %></span> /5</p>
               </div>
                <% if is_admin? %> 
-               <br/ >
+               <br/>
                 <button class="my-delete-btn">
                   <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
                 </button>
@@ -79,14 +79,6 @@
           
           <div class="pagination2">
           <%= paginate @movies %>
-         <!--    <span>Page 1 of 2:</span>
-            <a class="active" href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">...</a>
-            <a href="#">78</a>
-            <a href="#">79</a>
-            <a href="#"><i class="ion-arrow-right-b"></i></a> -->
           </div>
         </div>
       </div>

@@ -146,7 +146,7 @@
                           </div>
                         <% end %> 
                        </div>
-                        <br/ >
+                        <br/>
                           <div id="movie-review-form">   
                             <% if is_reviewable? current_user.id, @movie.id %>               
                               <%= render partial: 'reviews/form', locals: {review: @new_review, movie: @movie, show_page: true} %>
