@@ -1,4 +1,9 @@
 
+    <script>
+      function click_help(){
+        alert('      Welcome to the demo movie mangement system\n For admin acess use email: admin@admin.com and password: 123456 \n Since an emphearal db is used images might not be visible')
+      }
+    </script>
     <nav class="navbar navbar-default navbar-custom">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header logo">
@@ -33,7 +38,7 @@
               <li><%= link_to (image_tag (user_profile_pic(current_user,30,30))), user_path(current_user)%></li>
               <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
             <% end %>                
-            <li><a href="#">Help</a></li> 
+            <li><a href="#"  onclick="click_help();">Help</a></li> 
             <% if !user_signed_in? %>
               <li><a href="<%= new_user_session_url %>">Log In</a></li>
               <li><a href="<%= new_user_registration_url %>">sign up</a></li>
