@@ -1,0 +1,79 @@
+<header class="ht-header">
+  <div class="container">
+    <%= render 'partials/navbar' %>
+  </div>
+</header>
+<div class="hero common-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hero-ct">
+          <h1>Celebrities</h1>
+          <ul class="breadcumb">
+            <li class="active"><a href="<%= home_movies_url %>">Home</a></li>
+            <li> <span class="ion-ios-arrow-right"></span> celebrity listing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- celebrity grid v1 section-->
+<div class="page-single">
+  <div class="container">
+    <div class="row ipad-width2">
+      <div>
+        <div class="topbar-filter">
+          <p>Found <span><%= Actor.all.count%></span> in total</p>
+          <label>Sort by:</label>
+          <select>
+            <option value="popularity">Popularity Descending</option>
+            <option value="popularity">Popularity Ascending</option>
+            <option value="rating">Rating Descending</option>
+            <option value="rating">Rating Ascending</option>
+            <option value="date">Release date Descending</option>
+            <option value="date">Release date Ascending</option>
+          </select>
+          <a href="#" class="list"><i class="ion-ios-list-outline "></i></a>
+          <a  href="#" class="grid"><i class="ion-grid active"></i></a>
+        </div>
+        <div class="celebrity-items">
+          <% @actors.each do |actor| %>
+            <div class="ceb-item">
+            
+              <% if !actor.nil? %>
+                <%= image_tag actor.resized_actor_pic(270, 400) , html: {alt: ""}%>
+              <% end %>
+              <div class="ceb-infor">
+                <% if !actor.nil? %>
+                  <h2 align="center"><a href="<%= edit_actor_url(actor)%>"><%= actor.name %></a></h2>
+                <% end%>
+              </div>
+              <br />
+              <% if is_admin? %>
+                <div align="center">
+                  <% if !actor.nil? %>
+                    <button class="my-edit-btn movie-item-style-1 movie-item-style-2" >
+                    <%= link_to 'Edit',edit_actor_path(actor) %></button>
+                    <button class="my-delete-btn movie-item-style-1 movie-item-style-2" >
+                    <%= link_to 'Delete',actor_path(actor), method: :delete, data: { confirm: 'Are you sure? Actor will be removed from all movies' } %></button>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div class="topbar-filter">
+          <label>Reviews per page:</label>
+          <select>
+            <option value="range">9 Reviews</option>
+            <option value="saab">10 Reviews</option>
+          </select>
+          <div class="pagination2">
+            <%= paginate @actors %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+<header class="ht-header">
+  <div class="container">
+    <%= render 'partials/navbar' %>
+  </div>
+</header>
+<div class="hero common-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hero-ct">
+          <h1> Reports</h1>
+          <ul class="breadcumb">
+            <li class="active"><a href="<%=home_movies_path%>">Home</a></li>
+            <li> <span class="ion-ios-arrow-right"></span> Report listing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- blog detail section-->
+<div class="page-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 col-sm-12 col-xs-12">
+        <div class="blog-detail-ct">
+          <div class="row">        
+            <% if !@reports.empty? %>
+              <div class= "col-md-5  col-md-offset-3">
+                <h1 align="center">Pending-Reports</h1>
+              </div>
+            <% else %>
+                <h1 align="center">No Reports Found</h1>
+            <% end %>
+      
+          </div>
+         
+          <!-- comment items -->
+          <div class="comments">
+            <% @reports.each do |report| %>
+              <div class="cmt-item flex-it">
+                <div class="author-infor">
+                  <div class="flex-it2" >
+                    <h9><span class="time">Reported By:&nbsp</span><a href="<%=edit_user_registration_url(report.user)%>"><%=report.user.name %></a>
+                       <br/> <span class="time">Wrttien By:&nbsp</span> <a href="<%=edit_user_registration_url(report.review.user)%>"><%=report.review.user.name%></a>
+                        <br/> <span class="time">Movie:&nbsp</span> <a href="<%=movie_url(report.review.movie)%>"><%=report.review.movie.title%></a>
+                    </h9>
+                  </div>
+                  <div class="flex-it2">
+                    <h6><a href="<%=edit_review_url(report.review)%>"><%= report.review.title%></a></h6>
+                  </div>
+                  <p><%=report.review.comment%></p>
+                </div>
+              </div>
+              <div class="row">
+                 <div class= "col-md-4 col-md-offset-2"> 
+                   <p>   </p> <button class="my-submit-btn movie-item-style-1 movie-item-style-2 "> <%= link_to 'Ignore', admin_report_path(report),method: :delete, data: { confirm: 'Are you sure you would like to delete this report ?' }  %></button>
+                </div>
+                <div class= "col-md-4 col-md-offset-2"> 
+                   <p>   </p> <button class="my-delete-btn movie-item-style-1 movie-item-style-2 "> <%= link_to 'Delete', review_path(report.review), method: :delete, data: { confirm: 'Are you sure you want to delete this review ?' } %></button>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <!-- comment form -->
+        </div>
+        <div class="topbar-filter">
+          <label>Reports per page:</label>
+          <select>
+            <option value="range">20 Reports</option>
+            <option value="">10 Reports</option>
+          </select>
+          <div class="pagination2">
+          <%= paginate @reports %>
+         <!--    <span>Page 1 of 2:</span>
+            <a class="active" href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">...</a>
+            <a href="#">78</a>
+            <a href="#">79</a>
+            <a href="#"><i class="ion-arrow-right-b"></i></a> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-12 col-xs-12">
+        <div class="sidebar">
+          <div class="sb-search sb-it">
+            <h4 class="sb-title">Search</h4>
+            <input type="text" placeholder="Enter keywords">
+          </div>
+          <div class="sb-cate sb-it">
+            <h4 class="sb-title">Categories</h4>
+            <ul>
+              <li><a href="<%=reviews_url%>">Approved (<%=Review.all.count %>)</a></li>  
+              <li><a href="<%=admin_reports_url%>">Reported  (<%=Report.all.count %>)</a></li>  
+            </ul>
+          </div>
+          <div class="ads">
+            <img src="images/uploads/ads1.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

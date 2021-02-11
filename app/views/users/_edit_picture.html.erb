@@ -1,0 +1,31 @@
+<!--signup form popup-->
+<div class="login-wrapper"  id="signup-content">
+    <div class="login-content">
+        <a href="#" class="close">x</a>
+        <h3>Select New Avatar</h3>
+         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, validate: true) do |f| %>          
+             <div class="row form-it">
+                <%= f.file_field :profile_pic, accept: 'image/png,image/jpeg'  %><br />
+            </div>
+
+           <div class="row form-it">
+                <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+                <%= f.password_field :current_password, autocomplete: "current-password" %><br />
+           </div>
+
+            <div class="row form-it">
+                <div class= "remember">
+                    <% if current_user.profile_pic.attached? %>
+                        <%= f.check_box :remove_profile_pic %>
+                        <%= f.label :remove_profile_pic%>
+                    <% end %>
+               </div>
+            </div>
+
+            <div class="row form-it">
+              <%=f.button :submit, placeholder: 'Change'%>
+           </div>
+        <% end %>
+    </div>
+</div>
+<!--end of signup form popup-->

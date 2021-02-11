@@ -1,0 +1,48 @@
+<div class="sidebar">
+  <div class="searh-form">
+    <h4 class="sb-title">Add movie media</h4>
+    <%= render partial: 'partials/error', locals: {object: @movie} %>
+    <%= form_with(model: @movie,local: true, class: 'form-style-1') do |form| %>
+       <div class="row">
+        <div class="col-md-8 col-md-offset-3  form-it">
+          <%= form.label :thumbnail %>
+          <%= form.file_field :thumbnail, accept: 'image/png,image/jpeg' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-3 form-it">
+        <%= form.button :submit , class: 'my-submit-btn movie-item-style-1 movie-item-style-2'%>
+        </div>
+      </div>
+      <%= form.hidden_field :movie_update_type, value: 'media_thumbnail' %>
+    <% end %>
+    <%= form_with(model: @movie,local: true, class: 'form-style-1') do |form| %>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-3  form-it">
+          <%= form.label :posters %>
+          <%= form.file_field :posters , multiple: true, accept: 'image/png,image/jpeg'%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-3 form-it">
+        <%= form.button :submit , class: 'my-submit-btn movie-item-style-1 movie-item-style-2'%>
+        </div>
+      </div>
+      <%= form.hidden_field :movie_update_type, value: 'media_posters' %>
+    <% end %>
+    <%= form_with(model: @movie,local: true, class: 'form-style-1') do |form| %>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-3  form-it">
+          <%= form.label :trailer %>
+          <%= form.file_field :trailer, accept: 'video/mp4, video/quicktime' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-3 form-it">
+        <%= form.button :submit , class: 'my-submit-btn movie-item-style-1 movie-item-style-2'%>
+        </div>
+      </div>
+      <%= form.hidden_field :movie_update_type, value: 'media_trailer' %>
+    <% end %>    
+  </div>
+</div>

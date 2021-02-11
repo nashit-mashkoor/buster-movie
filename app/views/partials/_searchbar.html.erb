@@ -1,0 +1,13 @@
+<!-- top search form -->
+<%= form_tag home_movies_path, method: :get,style: 'width=100',  role: 'search' do %>
+<div class="top-search">
+  <%= text_field_tag :search, params[:search], placeholder: 'Search your favourite movie' %>
+  <%= submit_tag "         ",class:'search-img', name: nil %>
+</div>
+
+<% end %>
+<!-- top search form -->
+      
+     
+     
+    

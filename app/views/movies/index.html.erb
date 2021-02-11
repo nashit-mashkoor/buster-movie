@@ -1,0 +1,187 @@
+<header class="ht-header full-width-hd">
+    <div class="row">
+      <%= render 'partials/navbar' %>
+    </div>
+</header>
+<div class="slider sliderv2">
+  <div class="container">
+    <div class="row">
+        <div class="slider-single-item">
+          <% @slider_movies.each do |movie| %>
+            <div class="movie-item">
+              <div class="row">
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                  <div class="title-in">
+                    <h1><a href="#"><%=movie.title%> <span><%= movie.year.year%></span></a></h1>
+                  <div class="social-btn">
+                    <a href="<%= url_for(movie.thumbnail)%>" class="parent-btn"><i class="ion-play"></i> Download Poster</a>
+                    <div class="hover-bnt">
+                      <a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>share</a>
+                      <div class="hvr-item">
+                        <a href="www.fb.com" class="hvr-grow"><i class="ion-social-facebook"></i></a>
+                        <a href="www.twitter.com" class="hvr-grow"><i class="ion-social-twitter"></i></a>
+                        <a href="www.google.com" class="hvr-grow"><i class="ion-social-googleplus"></i></a>
+                        <a href="www.youtube.com" class="hvr-grow"><i class="ion-social-youtube"></i></a>
+                      </div>
+                    </div>    
+                  </div>
+                    <div class="mv-details">
+                      <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+                      <ul class="mv-infor">
+                        <li>  Run Time: <%=movie.length%> mins’ </li>
+                        <li>  Release: <%=movie.year.day%> <%=movie.year.month%>, <%=movie.year.year%>, </li>
+                      </ul>
+                    </div>
+                    <div class="btn-transform transform-vertical">
+                    <div><a href="#" class="item item-1 redbtn">more detail</a></div>
+                    <div><a href=" <%= movie_path(movie) %>" class="item item-2 redbtn hvrbtn">more detail</a></div>
+                  </div>    
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="mv-img-2">
+                    <a href="<%= movie_path(movie) %>"><%= image_tag movie.thumb_nail(270, 414) %></a>
+                  </div>
+                </div>
+              </div>  
+            </div>
+          <% end %>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="movie-items  full-width">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="title-hd">
+        <h2>In Demand</h2>
+        <a href="<%= home_movies_path %>" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+      </div>
+      <div class="tabs">
+        <ul class="tab-links">
+          <li class="active"><a href="#tab1-h2">#Popular</a></li>
+          <li><a href="#tab2-h2"> #Coming soon</a></li>
+          <li><a href="#tab3-h2">  #Top rated  </a></li>
+          <li><a href="#tab4-h2"> #Most reviewed</a></li>                        
+        </ul>
+          <div class="tab-content">
+              <div id="tab1-h2" class="tab active">
+                  <div class="row">
+                    <div class="slick-multiItem2">
+                      <% @movies.each do |movie| %>
+                        <div class="slide-it">
+                          <div class="movie-item">
+                            <div class="mv-img">
+                              <%= image_tag movie.thumb_nail(246, 377.95) %>
+                            </div>
+                            <div class="hvr-inner">
+                              <a  href="<%= movie_path(movie) %>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                            </div>
+                            <div class="title-in">
+                              <h6><a href="<%= movie_path(movie) %>"><%= movie.title%></a></h6>
+                              <p><i class="ion-android-star"></i><span><%= movie.rating%></span> /5</p>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+              <div id="tab2-h2" class="tab">
+                 <div class="row">
+                    <div class="slick-multiItem2">
+                      <% @movies.each do |movie| %>
+                        <div class="slide-it">
+                          <div class="movie-item">
+                            <div class="mv-img">
+                              <%= image_tag movie.thumb_nail(246, 377.95) %>
+                            </div>
+                            <div class="hvr-inner">
+                              <a  href="<%= movie_path(movie) %>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                            </div>
+                            <div class="title-in">
+                              <h6><a href="<%= movie_path(movie) %>"><%= movie.title%></a></h6>
+                              <p><i class="ion-android-star"></i><span><%= movie.rating%></span> /5</p>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+              <div id="tab3-h2" class="tab">
+                <div class="row">
+                    <div class="slick-multiItem2">
+                      <% @movies.each do |movie| %>
+                        <div class="slide-it">
+                          <div class="movie-item">
+                            <div class="mv-img">
+                              <%= image_tag movie.thumb_nail(246, 377.95) %>
+                            </div>
+                            <div class="hvr-inner">
+                              <a  href="<%= movie_path(movie) %>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                            </div>
+                            <div class="title-in">
+                              <h6><a href="<%= movie_path(movie) %>"><%= movie.title%></a></h6>
+                              <p><i class="ion-android-star"></i><span><%= movie.rating%></span> /5</p>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+               <div id="tab4-h2" class="tab">
+                <div class="row">
+                    <div class="slick-multiItem2">
+                      <% @movies.each do |movie| %>
+                        <div class="slide-it">
+                          <div class="movie-item">
+                            <div class="mv-img">
+                              <%= image_tag movie.thumb_nail(246, 377.95) %>
+                            </div>
+                            <div class="hvr-inner">
+                              <a  href="<%= movie_path(movie) %>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                            </div>
+                            <div class="title-in">
+                              <h6><a href="<%= movie_path(movie) %>"><%= movie.title%></a></h6>
+                              <p><i class="ion-android-star"></i><span><%= movie.rating%></span> /5</p>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="trailers full-width">
+    <div class="row ipad-width">
+      <!-- Trailers -->
+      <div class="col-md-9 col-sm-12 col-xs-12">
+            <h1 align="center"> News Feed not found</h1>
+      </div>
+      <div class="col-md-3 col-sm-12 col-xs-12  ">
+        <div class="sidebar" align="center">
+          <div class="celebrities">
+            <h4 class="sb-title">Spotlight Celebrities</h4>
+            <% @actors.each do |actor| %>
+              <div class="celeb-item">
+                <%=image_tag (actor.resized_actor_pic(70,70)) %> 
+                <div class="celeb-author">
+                  <h6><a href="#"><%= actor.name %></a></h6>
+                  <span>Actor</span>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--end of latest new v2 section-->

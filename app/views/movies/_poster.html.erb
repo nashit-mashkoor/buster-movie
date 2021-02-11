@@ -1,0 +1,8 @@
+
+<%= link_to url_for(poster), target: :_blank do %>
+  <%= image_tag(movie.movie_poster(poster, 850,400))%>
+<% end %>
+<% if is_admin? && movie.posters.attached? %>
+  <%= link_to 'Remove', delete_poster_movie_path(movie,poster), method: :delete , data: { confirm: 'Are you sure?' }  %>
+<% end %>
+  

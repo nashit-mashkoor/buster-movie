@@ -1,0 +1,182 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+.alert-alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+
+}
+.alert-notice {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+
+}
+.alert-success {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+.alert-danger {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.my-edit-btn {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #ffc107;
+
+    font-family: 'Dosis', sans-serif;
+    font-size: 14px;
+   
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.my-edit-btn:hover{
+  background-color: #ffc107;
+}
+
+.my-delete-btn  {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #de0909;
+
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+.my-delete-btn:hover{
+    background-color: #de0909;
+}
+
+
+.my-submit-btn  {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #dcf836;
+
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+.my-submit-btn:hover{
+    background-color: #dcf836;
+}
+
+.my-remove-btn  {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #c4610a;
+
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+.my-remove-btn:hover{
+    background-color: #c4610a;
+}
+
+.my-report-btn  {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #09b86f;
+
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+.my-report-btn:hover{
+    background-color: #09b86f;
+}
+
+.social-btn a.parent-btn-2 {
+  font-family: 'Dosis', sans-serif;
+  font-size: 14px;
+  color: #dcf836;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 35px;
+}
+.btn-border {
+  border: 1px solid #dcf836;
+
+}
+
+.search-img {
+  background:  image-url('uploads/topsearch.png') no-repeat right 20px center;
+}
+
+.field_with_errors  {
+  display: inline;
+}
+
+.field_with_errors .message {
+  color: #D00;
+  padding-left: 5px;
+  font-size: 12px;
+}

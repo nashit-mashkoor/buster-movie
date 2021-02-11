@@ -1,0 +1,48 @@
+<div class="col-md-9 col-sm-12 col-xs-12">
+  <div class="topbar-filter">
+    <p>Found <span><%= pluralize(@total_rated_count, "review") %></span> in total</p>
+    <label>Sort by:</label>
+    <select>
+      <option value="range">-- Choose option --</option>
+      <option value="saab">-- Choose option 2--</option>
+    </select>
+  </div>
+  <% total_rated.each do |rate| %>
+    <div class="movie-item-style-2 userrate" id ="rated-list-<%= rate.id%>">
+      
+        <%=image_tag (rate.movie.thumb_nail(200,250)) %>
+        
+      <div class="mv-item-infor">
+        <h6><a href="<%= movie_url(rate.movie)%>"><%=rate.movie.title %> <span>(<%= rate.movie.year.year %>)</span></a></h6>
+        <p class="time sm-text">your rate:</p><br />
+        <p class="rate"><i class="ion-android-star"></i><span><%= rate.rating%></span> /5</p>
+        <p class="time sm-text">your reviews:</p>
+        <h6><%=rate.title%></h6>
+        <p class="time sm"><%= rate.created_at.strftime("%B #{rate.created_at.day.ordinalize}, %Y") %></p>
+        <p><%=rate.comment%></p>   
+        <% if (is_admin? || (current_user.id == rate.user_id)) %>    
+        <br />  
+      <div class = "row" align="center">
+        <div class= "col-md-2 col-md-offset-1">                   
+          <button class="my-edit-btn movie-item-style-1 movie-item-style-2 "><%= link_to ' Edit ', edit_review_path(rate) %></button>
+        </div>
+        <div class= "col-md-2 col-md-offset-4"> 
+          <button class="my-delete-btn movie-item-style-1 movie-item-style-2 "> <%= link_to 'Delete', review_path(rate), method: :delete, data: { confirm: 'Are you sure?' } %></button>
+        </div>
+      </div>
+    <% end %>
+      </div>
+
+    </div>
+  <% end %>  
+  <div class="topbar-filter">
+    <label>Movies per page:</label>
+    <select>
+      <option value="range">20 Movies</option>
+      <option value="saab">10 Movies</option>
+    </select>
+    <div class="pagination2">
+     <%= paginate total_rated %>
+    </div>
+  </div>
+</div>

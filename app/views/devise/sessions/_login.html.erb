@@ -1,0 +1,42 @@
+<div class="sidebar">
+  <div class="searh-form">
+    <h4 class="sb-title">Log In</h4>
+    <%= render partial: 'partials/error', locals: {object: @movie} %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-style-1'}, validate: true) do |f| %>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 form-it">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2  form-it">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+      </div>
+      <% if devise_mapping.rememberable? %>
+        <div class = "row">
+          <div class="col-md-4 col-md-offset-2 form-it">
+            <%= f.check_box :remember_me  %>
+            <div class ="row">
+              <div class="col-md-5">
+                <%= f.label :remember_me %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-5 form-it">
+         <%= f.button :submit, class: 'my-submit-btn movie-item-style-1 movie-item-style-2' do %>
+         <a>Log In</a>
+         <% end %>
+        </div>
+      </div>
+      <div class="row col-md-offset-2">
+        <%= render "devise/shared/links" %>
+      </div>
+   <% end %>
+  </div>
+</div>

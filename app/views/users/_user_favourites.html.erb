@@ -1,0 +1,45 @@
+<div class="col-md-9 col-sm-12 col-xs-12">
+  <div class="topbar-filter user">
+    <p>Found <span><%= pluralize(@total_favourites, "movie")%></span> in total</p>
+    <label>Sort by:</label>
+    <select>
+      <option value="range">-- Choose option --</option>
+      <option value="saab">-- Choose option 2--</option>
+    </select>
+  </div>
+  <div class="flex-wrap-movielist user-fav-list">
+    <% favourites.each do |favourite| %>
+      <div class="movie-item-style-2" id="favourite-list-<%=favourite.id%>">
+        <%=image_tag (favourite.thumb_nail(179.48, 275.55)) %>
+        <div class="mv-item-infor">
+          <h6><a href="<%= movie_url(favourite)%>"><%= favourite.title %> <span>(<%= favourite.year.year %>)</span></a></h6>
+          <p class="rate"><i class="ion-android-star"></i><span><%=calculate_average_review(favourite)%></span> /5</p>
+          <div class="describe"><%= sanitize(favourite.description.strip)%></div>
+          <p class="run-time"> Run Time:<%= favourite.length.round %> mins    .     <span>Release: <%= favourite.year.strftime("%B #{favourite.year.day.ordinalize}, %Y")%></span></p>
+          <p>Stars: 
+            <% favourite.actors.limit(3).each do |actor| %>
+              <a href="#"><%= actor.name %></a> 
+            <% end %>
+          </p>
+          <br />
+          <div class= "row">
+            <div class= "col-md-2 col-md-offset-2"> 
+              <button class="my-delete-btn movie-item-style-1 movie-item-style-2 "> <%= link_to 'Remove', remove_favourite_user_path(current_user, favourite), method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>    
+  <div class="topbar-filter">
+    <label>Movies per page:</label>
+    <select>
+      <option value="range">5 Movies</option>
+      <option value="saab">10 Movies</option>
+    </select>
+    
+    <div class="pagination2">
+      <%= paginate favourites %>
+    </div>
+  </div>
+</div>

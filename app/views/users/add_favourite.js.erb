@@ -1,0 +1,6 @@
+$(document).ready(function(){
+   flash_update("<%= j (render partial: 'layouts/jsflash') %> ");
+      $("div#user-favourite-btn").empty()
+      $("div#user-favourite-btn").html(" <%= j(render partial: 'users/remove_button', locals: {movie: @movie})%>");
+});
+

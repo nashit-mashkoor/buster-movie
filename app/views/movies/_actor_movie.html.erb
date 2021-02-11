@@ -1,0 +1,7 @@
+<% if actor.actor_pic.attached? %>
+  <p><%= actor.name %></p>
+  <%= image_tag actor.resized_actor_pic(200,200) %>
+  <%= link_to 'Remove', remove_actor_movie_path(movie, actor), method: :delete %>
+<%else %>
+  <h1> No picture Found </h1>
+<% end %>

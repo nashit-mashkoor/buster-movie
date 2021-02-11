@@ -1,0 +1,31 @@
+<header class="ht-header">
+  <div class="container">
+    <%= render 'partials/navbar' %>
+  </div>
+</header>
+<div class="hero common-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hero-ct">
+          <h1>Edit <%= resource_name.to_s.humanize %> Profile</h1>
+          <ul class="breadcumb">
+            <li><a href="<%= home_movies_url %>">Home</a></li>
+            <li> <span class="ion-ios-arrow-right"></span> <a href="<%= user_url(current_user) %>">Profile</a></li>
+            <li class="active"> <span class="ion-ios-arrow-right"></span> Edit Profile</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-single">
+  <div class="container">
+    <%= render partial: 'edit'%>
+  </div>
+</div>
+
+
+
+
+

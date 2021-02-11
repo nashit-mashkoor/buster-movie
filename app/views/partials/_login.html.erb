@@ -1,0 +1,49 @@
+<!--login form popup-->
+<div class="login-wrapper" id="login-content" >
+    <div class="login-content">
+        <a href="#" class="close">x</a>
+        <h3>Login</h3>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="row">
+             <%= f.label :email do %>
+                    Email:
+                    
+                     <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "username",  required: 'required', placeholder: 'abc@gmail.com' %>
+                <% end %>
+          </div>
+           
+            <div class="row">
+              <label for="password">
+                    Password:
+                   
+                    <%= f.password_field :password, autocomplete: "current-password", id: "password", placeholder: "******",  required: "required" %>
+                </label>
+            </div>
+            <div class="row">
+              <div class="remember">
+                  
+              <% if devise_mapping.rememberable? %>
+                <div>
+                   <%=f.check_box :remember_me%><span>Remember me</span>
+                 </div>                
+              <% end %>
+              </div>
+            </div>
+           <div class="row">
+            <%= f.submit "Log in" %>
+           </div>
+        <% end %>
+        <div class="row">
+          <p>Or via social</p>
+            <div class="social-btn-2">
+              <a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a>
+              <a class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end of login form popup-->
+
+
+
+

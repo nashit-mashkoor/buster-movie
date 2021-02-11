@@ -1,0 +1,274 @@
+<header class="ht-header">
+  <div class="container">
+    <%= render 'partials/navbar' %>
+    <%= render 'partials/searchbar' %>
+  </div>
+</header>
+<div class="hero mv-single-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- <h1> movie listing - list</h1>
+        <ul class="breadcumb">
+          <li class="active"><a href="#">Home</a></li>
+          <li> <span class="ion-ios-arrow-right"></span> movie listing</li>
+        </ul> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-single movie-single movie_single">
+  <div class="container">
+    <div class="row ipad-width2">
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="movie-img sticky-sb">
+          <%= link_to url_for(@movie.thumbnail), target: :_blank do %>
+            <%= image_tag (@movie.thumb_nail(330,505.67)) %>
+          <% end %>
+          <div class="movie-btn"> 
+            <div class="btn-transform transform-vertical red">
+              <div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Download Trailer</a></div>
+              <% if @movie.trailer.attached? %>
+                <div><a href="<%= url_for(@movie.trailer) %>" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+              <% else %>
+                <div><a href="# class='fancybox-media hvr-grow'"><i class="ion-play"></i></a></div>
+              <% end %>
+            </div>
+            <div class="btn-transform transform-vertical">
+              <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Buy ticket</a></div>
+              <div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-12 col-xs-12">
+        <div class="movie-single-ct main-content">
+          <h2 class="bd-hd"><%= @movie.title %> <span>(<%= @movie.year.year %>)-<%=@movie.length%> mins</span></h2>
+          <div class="social-btn">
+            <% unless @is_user_favourite %>
+              <div class = "col-md-4" id="user-favourite-btn">
+                <%= render partial: 'users/add_button', locals: {movie: @movie} %>
+              </div>
+            <% else %>
+              <div class = "col-md-4" id="user-favourite-btn">
+                <%= render partial: 'users/remove_button', locals: {movie: @movie} %>
+              </div>
+            <% end %>
+          </div>
+          <div class="movie-rate">
+            <div class="rate">
+              <i class="ion-android-star"></i>
+              <p><span id="number-average-review-rating"><%= calculate_average_review(@movie) %></span> /5<br>
+                <span class="rv"><b id="movie-review-count-1"><%= @movie.reviews.count %></b> Reviews</span>
+              </p>
+            </div>
+            <div class="rate-star">
+              <p>Rate This Movie:  </p>
+              <div class="average-review-rating" data-score="<%=calculate_average_review(@movie) %>"></div>
+            
+            </div>
+          </div>
+          <div class="movie-tabs">
+            <div class="tabs">
+              <ul class="tab-links tabs-mv">
+                <li class="active"><a href="#overview">Description</a></li>
+                <li><a href="#reviews"> Reviews</a></li>
+                <li><a href="#cast">  Actors </a></li>
+                <li><a href="#media"> Media</a></li>                         
+              </ul>
+                <div class="tab-content">
+                    <div id="overview" class="tab active">
+                      <div class="row">
+                        <% if !is_admin?%>
+                          <div class="col-md-8 col-sm-12 col-xs-12">
+                            <h1><%= sanitize @movie.description.strip %></h1>
+                          </div>
+                        <% else %>
+                        <%= render partial: 'description_edit' %>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div id="reviews" class="tab review">
+                      <div class="row">
+                          <div class="rv-hd">
+                            <div class="div">
+                              <h3>Related Movies To</h3>
+                            <h2><%= @movie.title %></h2>
+                            </div>
+                          </div>
+                          <div class="topbar-filter">
+                            <p>Found <span> <b id= "movie-review-count-2"><%= @movie.reviews.count%></b> reviews</span> in total</p>
+                            <label>Filter by:</label>
+                            <select>
+                              <option value="popularity">Popularity Descending</option>
+                              <option value="popularity">Popularity Ascending</option>
+                              <option value="rating">Rating Descending</option>
+                              <option value="rating">Rating Ascending</option>
+                              <option value="date">Release date Descending</option>
+                              <option value="date">Release date Ascending</option>
+                            </select>
+                          </div>
+                        <div id="review-list">
+                        <% @reviews.each do |review| %>  
+                          <div class="mv-user-review-item" id="review-id-<%=review.id%>">
+                            <div class="user-infor">
+                              <%= image_tag(user_profile_pic(review.user, 42, 42)) %>
+                              <div>
+                                <h3><%=review.title %></h3>
+                                <p class="time">
+                                  <%= review.created_at.to_date %> by 
+                                  <%if is_admin? %>
+                                    <a href="<%= edit_admin_user_path(review.user.id)%>"> <%= review.user.name%></a>
+                                  <% else %>
+                                    <%= review.user.name%>  
+                                  <% end %>
+                                </p>
+                              </div>
+                            </div>
+                            <p> <div class="no-star"><div class="review-rating" data-score="<%=review.rating %>"></div></div> <p>
+                            <p><%=review.comment%></p>
+                            <div class = "row" align="center">
+                              <% if is_editable? review %>    
+                                <br />  
+                                  <div class= "col-md-2 col-md-offset-1">                   
+                                    <button class="my-edit-btn movie-item-style-1 movie-item-style-2 "><%= link_to ' Edit ', edit_review_path(review) %></button>
+                                  </div>
+                                  <div class= "col-md-2 col-md-offset-1"> 
+                                    <button class="my-delete-btn movie-item-style-1 movie-item-style-2 "> <%= link_to 'Delete', review_path(review), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                                  </div>
+                              <% end %>
+                              <% if is_reportable? review %>
+                                <div class= "col-md-2 col-md-offset-1" id="report-form-id">   
+                                  <%= render partial: 'admin/reports/form', locals: { user: current_user.id, review: review.id} %>                
+                                </div>
+                              <% end %>
+                            </div>
+                          </div>
+                        <% end %> 
+                       </div>
+                        <br/>
+                          <div id="movie-review-form">   
+                            <% if is_reviewable? current_user.id, @movie.id %>               
+                              <%= render partial: 'reviews/form', locals: {review: @new_review, movie: @movie, show_page: true} %>
+                            <% end %>
+                          </div>
+                        <div class="topbar-filter">
+                          <label>Reviews per page:</label>
+                          <select>
+                            <option value="range">5 Reviews</option>
+                            <option value="saab">10 Reviews</option>
+                          </select>
+                          <div class="pagination2">
+                            <%= paginate @reviews %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="cast" class="tab">
+                     <% if is_admin? %>
+                        <%= render partial: 'add_actors' %>
+                      <% end %>
+                      <div class="row">
+                        <% if !is_admin? %>
+                          <h3>Cast of</h3>
+                          <h2><%=@movie.title%></h2>
+                        <% end %>
+                          <div class="title-hd-sm">
+                            <h4>Actors</h4>
+                          </div>
+                        <div class="mvcast-item">    
+                          <% @actors.each do |actor| %>                 
+                            <div class="cast-it">
+                              <div class="cast-left">
+                                <%= link_to url_for(actor.actor_pic), target: :_blank do %>
+                                  <%= image_tag(actor.resized_actor_pic(200,200)) %>
+                                 <% end %>
+                                <%if is_admin? %>
+                                    <h3><%= link_to actor.name, edit_actor_path(actor) %></h3>
+                                <% else %>
+                                    <h3><%= actor.name%></h3>  
+                                <% end %> 
+                              </div>
+                              <p>
+                                <% if is_admin? %>
+                                  <button class="my-edit-btn movie-item-style-1 movie-item-style-2"><%= link_to ' Edit ', edit_actor_path(actor) %></button><button class="my-remove-btn movie-item-style-1 movie-item-style-2"> <%= link_to 'Remove', remove_actor_movie_path(@movie, actor), method: :delete%></button>
+                                <% end %>
+                              </p>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="media" class="tab">
+                      <div class="row">
+                        <% if is_admin? %>
+                          <%= render partial: 'media_update' %>
+                        <% end %>
+                        <div class="rv-hd">
+                          <% if !is_admin? %>
+                            <div>
+                              <h3>Videos & Posters of</h3>
+                              <h2><%=@movie.title%></h2>
+                            </div>
+                          <% end %>
+                        </div>
+                        <div class="title-hd-sm">
+                            <h4> Trailer</h4>
+                        </div>
+                        <div class="row" >
+                          <div class="mvsingle-item media-item col-md-11 col-md-offset-1 ">
+                            <% if @movie.trailer.attached?%>
+                              <div>
+                                <%= video_tag(url_for(@movie.trailer), controls: "")%>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                        <% if is_admin? && @movie.trailer.attached? %>  
+                          <br />
+                          <div class="row" >
+                            <div class="mvsingle-item media-item col-md-8 col-md-offset-4 ">
+                              <button class="my-delete-btn movie-item-style-1 movie-item-style-2"> <%= link_to 'Delete', delete_trailer_movie_path, method: :delete %></button>
+                            </div>
+                          </div>
+                        <% end %>
+                        <div class="title-hd-sm">
+                          <h4>Posters <span> <%= @movie.posters.size %></span></h4>
+                        </div>
+                        <% if is_admin? && @movie.posters.attached? %>
+                          <div class ="row" >
+                            <div class="mvsingle-item col-md-8 col-md-offset-4" >
+                               <button class="my-delete-btn movie-item-style-1 movie-item-style-2"> <%= link_to 'Delete All', delete_all_posters_movie_path(@movie), method: :delete %></button>
+                            </div>
+                          </div>
+                        <% end %>
+                        <%@movie.posters.each do |poster| %>
+                          <div class ="row" >
+                            <div class="mvsingle-item col-md-10 col-md-offset-2" >
+                              <%= link_to url_for(poster), target: :_blank do %>
+                                <%= image_tag url_for(@movie.movie_poster(poster, 400,600))%>
+                              <% end %>  
+                            </div>
+                          </div>
+                          <% if is_admin? && @movie.posters.attached? %> 
+                            <div class="row">
+                              <div class="col-md-8 col-md-offset-4">
+                                <button class="my-delete-btn movie-item-style-1 movie-item-style-2"> <%= link_to 'Delete', delete_poster_movie_path(@movie,poster), method: :delete %></button>
+                              </div>
+                            </div>
+                          <% else %>
+                            <br />  
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>    
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

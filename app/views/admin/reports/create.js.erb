@@ -1,0 +1,4 @@
+$(document).ready(function(){
+  flash_update("<%= j (render partial: 'layouts/jsflash') %> ");
+  $('#review-id-<%=@report.review_id%>').find('div#report-form-id').hide();
+});

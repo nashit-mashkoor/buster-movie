@@ -1,0 +1,71 @@
+<div class="sidebar">
+  <div class="searh-form">
+    <h2 class="sb-title" align="center"><%=current_user.name %></h2>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class:'form-style-1', method: :put }, validate: true) do |f| %>
+      <div class="row">
+        <div class = "row">
+           <div class="col-md-5 col-md-offset-4 form-it">
+            <%= f.label :profile_pic%>
+            <%= link_to user_path(current_user) do %>
+              <%= image_tag user_profile_pic(resource,400,400), class: 'img-circle' %>
+            <% end %>
+          </div>S
+        </div>
+        <div class = "row">
+          <div class="col-md-5 col-md-offset-4 form-it">
+            <%= f.label :name%>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name"  %>
+          </div>
+        </div>
+        <div class = "row">
+          <div class="col-md-5 col-md-offset-4 form-it">
+            <%= f.label :email %>
+            <%= f.email_field :email, autocomplete: "email" %>    
+          </div>
+        </div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div class = "row">
+            <div class="col-md-5 col-md-offset-4 form-it">
+              <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %><p>
+            </div>
+          </div>
+        <% end %>
+        <div class = "row">
+          <div class="col-md-5 col-md-offset-4 form-it">
+            <%= f.label :password %><br/> <i>(leave blank if you don't want to change it)</i>
+            <% if @minimum_password_length %>
+              <em><%= @minimum_password_length %> characters minimum</em>
+             <% end %>
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
+        </div>
+        <div class = "row">
+          <div class="col-md-5 col-md-offset-4 form-it">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+        </div>
+        <div class = "row">
+          <div class="col-md-5 col-md-offset-4 form-it">
+            <%= f.label :current_password %><i>(we need your current password to confirm your changes)</i>
+            <%= f.password_field :current_password, autocomplete: "current-password" %>
+          </div>
+        </div>      
+        <br />          
+        <div class="col-md-5 col-md-offset-5 ">
+          <%=f.button :submit, class: 'my-submit-btn my-submit-btn movie-item-style-1 movie-item-style-2' do %>
+            <a>Submit</a>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+ 
+
+ 

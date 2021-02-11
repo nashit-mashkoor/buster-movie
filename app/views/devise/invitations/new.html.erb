@@ -1,0 +1,53 @@
+<header class="ht-header">
+  <div class="container">
+    <%= render 'partials/navbar' %>
+  </div>
+</header>
+<div class="hero common-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hero-ct">
+          <h1>Reviews</h1>
+          <ul class="breadcumb">
+            <li class="active"><a href="<%= home_movies_url %>">Home</a></li>
+            <li> <span class="ion-ios-arrow-right"></span> review edit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-single">
+  <div class="container">
+    <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post, class: 'form-style-1' }, validate: true) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <% resource.class.invite_key_fields.each do |field| -%>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 form-it">
+            <%= f.label field %><br />
+         </div>
+        </div> 
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 form-it">
+            <%= f.text_field field %><br />
+          </div>
+        </div>  
+      <% end %>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-5 form-it">
+          <%= f.submit t("devise.invitations.new.submit_button") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

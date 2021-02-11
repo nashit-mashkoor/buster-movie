@@ -1,0 +1,39 @@
+<div class="sidebar">
+  <div class="searh-form">
+    <h4 class="sb-title">Edit movie</h4>
+    <%= render partial: 'partials/error', locals: {object: @movie} %>
+    <%= form_with(model: @movie,local: true, class: 'form-style-1', validate: true) do |form| %>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-1 form-it">
+           <%= form.label :title, placeholder: 'Movie Name' %>
+           <%= form.text_field :title, placeholder:"Enter name"%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-1  form-it">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: 'tinymce' %>
+          <%= tinymce %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-1  form-it">
+          <%= form.label :length %>
+          <%= form.text_field :length, placeholder: "mins" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-1  form-it">
+          <%= form.label :year %>
+          <%= form.date_select :year %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-3 form-it">
+        <%= form.button :submit , class: 'my-submit-btn movie-item-style-1 movie-item-style-2'%>
+        </div>
+      </div>
+      <%= form.hidden_field :movie_update_type, value: 'description' %>
+   <% end %>
+  </div>
+</div>

@@ -12,5 +12,44 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+//= require jquery
+//= require tinymce
+//= require rails.validations
 //= require_tree .
+//= require_self
+$(document).ready(function(){
+    $(".alert-alert").delay(1000).slideUp(300);
+});
+$(document).ready(function(){
+    $(".alert-notice").delay(1000).slideUp(300);
+});
+
+
+$(document).ready(function(){
+  $('.average-review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+
+
+  $('#rating-form').raty({
+    scoreName: 'review[rating]'
+  });
+});
+
+function flash_update(html)  {
+   $('div#flash-id').empty();
+   $('div#flash-id').html(html);
+   $('.alert-alert').delay(10000).slideUp(300);
+   $('.alert-notice').delay(10000).slideUp(300);
+
+}

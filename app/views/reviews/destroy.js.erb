@@ -1,0 +1,23 @@
+$(document).ready(function(){
+  $('div#review-id-<%=(@review.id)%>').hide();
+  flash_update("<%= j (render partial: 'layouts/jsflash') %> ");
+  $('div.average-review-rating').data('score', "<%=calculate_average_review(@review.movie) %>");
+  $('#number-average-review-rating').text("<%=calculate_average_review(@review.movie) %>");
+
+  <% if is_reviewable? current_user.id, @review.movie_id %>
+    console.log(<%= @review.movie_id %>)
+    $("div#movie-review-form").append(" <%= j(render partial: 'reviews/form', locals: {review: Review.new, movie: @review.movie_id, show_page: true} )%>");
+      $('#rating-form').raty({
+          scoreName: 'review[rating]'
+       });
+  <% end %>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+  $("b#movie-review-count-1").text(parseInt($("b#movie-review-count-1").text()) - 1);
+  $("b#movie-review-count-2").text(parseInt($("b#movie-review-count-2").text()) - 1);
+
+});

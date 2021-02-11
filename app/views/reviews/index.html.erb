@@ -1,0 +1,95 @@
+<header class="ht-header">
+  <div class="container">
+    <%= render 'partials/navbar' %>
+  </div>
+</header>
+<div class="hero common-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hero-ct">
+          <h1> Reviews</h1>
+          <ul class="breadcumb">
+            <li class="active"><a href="#">Home</a></li>
+            <li> <span class="ion-ios-arrow-right"></span> Review listing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- blog detail section-->
+<div class="page-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 col-sm-12 col-xs-12">
+        <div class="blog-detail-ct">
+          <div class="row">        
+            <% if !@reviews.empty? %>
+              <div class= "col-md-5  col-md-offset-3">
+                <h1 align="center">All-Reviews</h1>
+              </div>
+            <% else %>
+                <h1 align="center">No Reviews Found</h1>
+            <% end %>
+      
+          </div>
+         
+          <!-- comment items -->
+          <div class="comments">
+            <% @reviews.each do |review| %>
+              <div class="cmt-item flex-it">
+            
+                <div class="author-infor">
+                  <div class="flex-it2" >
+                    <h6><span class="time">Written By:&nbsp</span><a href="<%=edit_user_registration_url(review.user)%>"><%=review.user.name %></a>
+                      <br/> <span class="time">Movie:&nbsp</span> <a href="<%=movie_url(review.movie)%>"><%=review.movie.title%></a>
+                    </h6>
+                  </div>
+                  <div class="flex-it2">
+                    <h6><a href="<%=edit_review_url(review)%>"><%= review.title%></a></h6>
+                  </div>
+                  <p><%=review.comment%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class= "col-md-3 col-md-offset-4"> 
+                   <p>   </p> <button class="my-delete-btn movie-item-style-1 movie-item-style-2 "> <%= link_to 'Delete', review_path(review), method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                  </div>
+              </div>
+            <% end %>
+          </div>
+          <!-- comment form -->
+        </div>
+        <div class="topbar-filter">
+          <label>Reviews per page:</label>
+          <select>
+            <option value="range">20 Reviews</option>
+            <option value="">10 Reviews</option>
+          </select>
+          <div class="pagination2">
+          <%= paginate @reviews %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-12 col-xs-12">
+        <div class="sidebar">
+          <div class="sb-search sb-it">
+            <h4 class="sb-title">Search</h4>
+            <input type="text" placeholder="Enter keywords">
+          </div>
+          <div class="sb-cate sb-it">
+            <h4 class="sb-title">Categories</h4>
+            <ul>
+              <li><a href="<%=reviews_url%>">Total (<%=Review.all.count %>)</a></li>  
+              <li><a href="<%=admin_reports_url%>">Reported  (<%=Report.all.count %>)</a></li>  
+            </ul>
+          </div>
+          <div class="ads">
+            <img src="images/uploads/ads1.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

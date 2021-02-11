@@ -1,0 +1,7 @@
+$(document).ready(function(){
+   flash_update("<%= j (render partial: 'layouts/jsflash') %> ");
+   $('div#profile-content').empty();
+   $('div#profile-content').html("<%= j (render partial: 'user_favourites', locals: {favourites: @favourites}) %> ");
+   $('li#fav-btn').attr('class', 'active');
+   $('li#rate-btn').attr('class', '');
+});

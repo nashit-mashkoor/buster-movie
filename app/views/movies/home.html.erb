@@ -1,0 +1,87 @@
+<header class="ht-header">
+  <div class="container">
+    <%= render 'partials/navbar' %>
+    <%= render 'partials/searchbar' %>
+  </div>
+</header>
+<div class="hero common-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hero-ct">
+          <h1>Movies</h1>
+          <ul class="breadcumb">
+            <li class="active"><%= link_to 'Home', home_movies_path%></li>
+            <li> <span class="ion-ios-arrow-right"></span> movie search</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="topbar-filter fw">
+          <p>Found <span><%= pluralize(@total_movie, "movie")%></span> in total</p>
+          <label>Sort by:</label>
+          <select>
+            <option value="popularity">Popularity Descending</option>
+            <option value="popularity">Popularity Ascending</option>
+            <option value="rating">Rating Descending</option>
+            <option value="rating">Rating Ascending</option>
+            <option value="date">Release date Descending</option>
+            <option value="date">Release date Ascending</option>
+          </select>
+          <a href="#" class="list"><i class="ion-ios-list-outline "></i></a>
+          <a  href="#" class="grid"><i class="ion-grid active"></i></a>
+        </div>
+        <div class="flex-wrap-movielist mv-grid-fw">
+          <!-- Sample Video of the template -->       
+            <!-- <div class="movie-item-style-2 movie-item-style-1">
+                  <#%= image_tag 'uploads/mv2.jpg' , alt:''%>
+                  <div class="hvr-inner">
+                          <a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                        </div>
+                  <div class="mv-item-infor">
+                    <h6><a href="#">into the wild</a></h6>
+                    <p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+                  </div>
+                </div>         -->
+          <% @movies.each do |movie| %> 
+            <div class="movie-item-style-2 movie-item-style-1">
+              <%=image_tag(movie.thumb_nail(170,261)) %>
+              <div class="hvr-inner">
+                      <a  href="<%= movie_url(movie)%>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                    </div>
+              <div class="mv-item-infor">
+                <h6><a href="<%= movie_url(movie)%>"><%= movie.title %></a></h6>
+                <p class="rate"><i class="ion-android-star"></i><span><%= calculate_average_review(movie) %></span> /5</p>
+              </div>
+               <% if is_admin? %> 
+               <br/>
+                <button class="my-delete-btn">
+                  <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </button>
+              <% end %>
+            </div>  
+
+          <% end %>            
+        </div>    
+        <div class="topbar-filter">
+          <label>Movies per page:</label>
+          
+          <select>
+            <option value="range">20 Movies</option>
+            <option value="">10 Movies</option>
+          </select>
+          
+          <div class="pagination2">
+          <%= paginate @movies %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

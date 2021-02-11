@@ -1,0 +1,51 @@
+
+    <script>
+      function click_help(){
+        alert('      Welcome to the demo movie mangement system\n For admin acess use email: admin@admin.com and password: 123456 \n Since an emphearal db is used images might not be visible')
+      }
+    </script>
+    <nav class="navbar navbar-default navbar-custom">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header logo">
+            <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <div id="nav-icon1">
+              <span></span>
+              <span></span>
+              <span></span>
+              </div>
+            </div>
+            <a href='<%=movies_path%>'> <%= image_tag 'logo1.png', class:'logo', style: '119x58' %></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav flex-child-menu menu-left">
+            <li class="hidden">
+              <a href="#page-top"></a>
+            </li>
+            <li><%= link_to 'Movies', home_movies_path%></li> 
+            <% if is_admin?%>
+              <li><%= link_to 'Add Movies', new_movie_path%></li>
+              <li><%= link_to 'Reviews', reviews_path%></li>
+              <li><%= link_to 'Actors', actors_path%></li>
+              <li><%= link_to 'Add Actors', new_actor_path%></li>
+              <li><%= link_to 'Users', admin_users_path%></li>
+              <li><%= link_to 'Add User', new_user_invitation_path%></li>
+            <% end %>
+          </ul>
+          <ul class="nav navbar-nav flex-child-menu menu-right">
+            <% if user_signed_in? %>
+              <li><%= link_to (image_tag (user_profile_pic(current_user,30,30))), user_path(current_user)%></li>
+              <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+            <% end %>                
+            <li><a href="#"  onclick="click_help();">Help</a></li> 
+            <% if !user_signed_in? %>
+              <li><a href="<%= new_user_session_url %>">Log In</a></li>
+              <li><a href="<%= new_user_registration_url %>">sign up</a></li>
+            <% end %>
+          </ul>
+        </div>
+      <!-- /.navbar-collapse -->
+      </nav>
+       <%= render 'layouts/flash' %>
+      

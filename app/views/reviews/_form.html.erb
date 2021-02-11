@@ -1,0 +1,58 @@
+<div class="sidebar">
+  <div class="searh-form">
+    <% if show_page == true %>
+      <%= render partial: 'partials/error', locals: {object: @review} %>
+      <h4 class="sb-title">Leave a comment</h4>
+      <%= form_for(review, url: movie_reviews_url(movie), remote: true, html: {class: 'form-style-1', autocomplete: true}, validate: true )  do |f| %>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 form-it">
+            <%= f.label :title %>
+            <%= f.text_field :title, placeholder: 'Comment title', autocomplete: true, value: review.title  %>
+          </div>
+          <br />
+          <div class="col-md-10 col-md-offset-1 form-it">
+              <div id="rating-form">
+                <label>Rating</label>
+              </div>
+          </div>
+          <div class="col-md-10 col-md-offset-1 form-it">
+            <%= f.label :comment %>
+            <%= f.text_area :comment, placeholder: 'Comment Details', autocomplete: true, value: review.comment,id: 'review_body' %>
+          </div>
+          <div class="col-md-5 col-md-offset-4 form-it">                                
+            <%= f.button :submit , class: 'my-submit-btn movie-item-style-1 movie-item-style-2'%>
+          </div>
+        </div>
+       <% end %>
+    <% else %>
+      <%= render partial: 'partials/error', locals: {object: @review} %>
+      <%= form_for(review, url: review_url(review), html: {class: 'form-style-1', autocomplete: true}, validate: true )  do |f| %>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 form-it">
+            <%= f.label :title %>
+            <%= f.text_field :title, placeholder: 'Comment title', autocomplete: true, value: review.title  %>
+          </div>
+          <br />
+          <div class="col-md-10 col-md-offset-1 form-it">
+              <div class="rating-form" id="rating-form" >
+                <label>Rating</label>
+              </div>
+          </div>
+          <div class="col-md-10 col-md-offset-1 form-it">
+            <%= f.label :comment %>
+            <%= f.text_area :comment, placeholder: 'Comment Details', autocomplete: true, value: review.comment, id: 'review_body' %>
+          </div>
+          <div class="col-md-5 col-md-offset-4 form-it">                                
+            <%= f.button :submit , class: 'my-submit-btn movie-item-style-1 movie-item-style-2'%>
+          </div>
+        </div>
+      <% end %> 
+      <script>
+        $(document).ready(function(){
+          $('#rating-form').raty('click', <%=review.rating%>);
+        });
+      </script>
+    <% end %>   
+  </div>
+</div> 
+

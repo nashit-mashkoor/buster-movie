@@ -2,14 +2,27 @@
 <html>
   <head>
     <title>IMDb</title>
+     <!--Google Font-->
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+  <!-- Mobile specific meta -->
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone-no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('logo2.png') %>
   </head>
 
   <body>
-    <%= yield %>
+
+<%= render 'partials/preloader' %>
+<%= yield %>
+<%= render 'partials/footer'%>
+
+
+
+
   </body>
 </html>

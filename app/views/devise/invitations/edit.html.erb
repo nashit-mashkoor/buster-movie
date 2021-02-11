@@ -1,0 +1,55 @@
+<header class="ht-header">
+  <div class="container">
+    <%= render 'partials/navbar' %>
+  </div>
+</header>
+<div class="hero common-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hero-ct">
+          <h1>Reviews</h1>
+          <ul class="breadcumb">
+            <li class="active"><a href="<%= home_movies_url %>">Home</a></li>
+            <li> <span class="ion-ios-arrow-right"></span> review edit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-single">
+  <div class="container">
+    <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: 'form-style-1' }, validate: true) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+        <%= f.hidden_field :invitation_token, readonly: true %>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 form-it">
+            <%= f.label :name%><br />
+             <%= f.text_field :name, autofocus: true, autocomplete: "name"  %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2  form-it">
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.label :password, autocomplete: "new-password" %>
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2  form-it">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+        </div>        
+        <div class="row">
+        <div class="col-md-8 col-md-offset-5 form-it">
+          <%= f.submit t("devise.invitations.edit.submit_button") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

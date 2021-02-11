@@ -1,0 +1,26 @@
+<div class="sidebar">
+  <div class="searh-form">
+    <h4 class="sb-title">Change your password</h4>
+    <%= render partial: 'partials/error', locals: {object: @movie} %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name),html: {class: 'form-style-1', method: :post}, validate: true) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 form-it">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br /> 
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 col-md-offset-5 form-it">
+          <%= f.button :submit , class: 'my-submit-btn movie-item-style-1 movie-item-style-2' do%>
+            <a>Send instructions</a>
+          <% end %>
+        </div>
+      </div>
+      <div class="row col-md-offset-2">
+        <%= render "devise/shared/links" %>
+      </div>
+   <% end %>
+  </div>
+</div>

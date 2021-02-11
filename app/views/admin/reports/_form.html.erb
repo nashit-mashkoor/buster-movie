@@ -1,0 +1,7 @@
+<%= form_with  url: admin_reports_url, validate: true do |form| %>
+  <%= form.hidden_field :user_id, value: user %>
+  <%= form.hidden_field :review_id, value: review %>
+  <%= form.button :submit, class: 'my-report-btn movie-item-style-1 movie-item-style-2' do %>
+    <a> Report</a>
+  <% end %>
+<% end %>
